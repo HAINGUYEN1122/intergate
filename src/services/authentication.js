@@ -1,20 +1,23 @@
 /* eslint-disable max-len */
 import { BehaviorSubject } from 'rxjs';
-import { apiBase } from './instance';
+// import { apiBase } from './instance';
 import { USER_LOCAL_STORE } from '../constants';
 
 const currentUserSubject = new BehaviorSubject(JSON.parse(localStorage.getItem(USER_LOCAL_STORE)));
 
-function login(email, password) {
-  return apiBase({
-    url: '/user/login',
-    method: 'POST',
-    data: {
-      email,
-      password,
-    },
-  });
+function login(user) {
+  return user;
 }
+// function login(email, password) {
+//   return apiBase({
+//     url: '/user/login',
+//     method: 'POST',
+//     data: {
+//       email,
+//       password,
+//     },
+//   });
+// }
 
 // function login(username, password) {
 //   const data = { username, password };
