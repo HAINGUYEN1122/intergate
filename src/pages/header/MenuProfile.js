@@ -61,7 +61,7 @@ export default function CustomizedMenus() {
   const logout = () => {
     authenticationService.logout();
   };
-  // console.log(userProfile);
+  console.log(userProfile);
 
   return (
     <>
@@ -74,10 +74,10 @@ export default function CustomizedMenus() {
         color="inherit"
       >
         <GroupName>
-          <Name>{`${userProfile && userProfile.firstName} ${userProfile && userProfile.lastName}`}</Name>
+          <Name>{`${userProfile.firstName} ${userProfile.lastName}`}</Name>
           <Position>Data Scientist</Position>
         </GroupName>
-        <Avatar>{`${userProfile && userProfile.firstName[0]}${userProfile && userProfile.lastName[0]}`}</Avatar>
+        <Avatar>{`${userProfile.firstName[0]}${userProfile.lastName[0]}`}</Avatar>
         <KeyboardArrowDownIcon fontSize="small" style={{ color: '#1e1e1e' }} />
       </Button>
       <StyledMenu

@@ -1,6 +1,6 @@
 import './App.css';
 import styled from 'styled-components/macro';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import DashBoard from './pages/dashboard';
 import Header from './pages/header';
 import Login from './pages/Login';
@@ -31,7 +31,10 @@ function App() {
 export default App;
 
 const Container = styled.div`
-  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 `;
 
 const Content = styled.div`
