@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '26px',
     marginTop: theme.spacing(2),
   },
-  decription: {
+  description: {
     fontFamily: 'Poppins',
     fontStyle: 'normal',
     fontWeight: 'normal',
@@ -87,6 +87,9 @@ const useStyles = makeStyles((theme) => ({
   containerLogin: {
     height: '100%',
   },
+  backToLogin: {
+    marginTop: theme.spacing(2),
+  },
 }));
 
 export default function retsetpass(props) {
@@ -96,7 +99,7 @@ export default function retsetpass(props) {
   const classes = useStyles();
   const user = JSON.parse(localStorage.getItem(USER_REMEMBER_LOCAL_STORE));
   const { value: password, onChange: onChangePassword } = useInput(user ? user.password : '');
-  const { value: repassword, onChange: onChangerePassword } = useInput(user ? user.repassword : '');
+  const { value: repassword, onChange: onChangeRePassword } = useInput(user ? user.repassword : '');
   //   const user = JSON.parse(localStorage.getItem(USER_REMEMBER_LOCAL_STORE));
   const [messErr, setMessErr] = useState('');
   const { value: errorMess, setValue: setError } = useCheckbox(false);
@@ -128,7 +131,9 @@ export default function retsetpass(props) {
           >
             Your new password!
           </Typography>
-          <Typography className={classes.decription}> Enter your new password, please. </Typography>
+          <Typography className={classes.description}>
+            Enter your new password, please.
+          </Typography>
           <InputLabel className={classes.label} htmlFor="outlined-adornment-password">Password</InputLabel>
           <OutlinedInput
             fullWidth
@@ -151,10 +156,10 @@ export default function retsetpass(props) {
             className={classes.field}
             autoComplete="current-repassword"
             value={repassword}
-            onChange={onChangerePassword}
+            onChange={onChangeRePassword}
           />
           {errorMess && <Alert severity="error">{messErr}</Alert>}
-          <Grid item xs>
+          <Grid item xs className={classes.backToLogin}>
             <Link href="/login" className={classes.hyperlink}>
               Login?
             </Link>

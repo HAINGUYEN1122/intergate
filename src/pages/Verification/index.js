@@ -26,21 +26,28 @@ const useStyles = makeStyles((theme) => ({
     fontStyle: 'normal',
     fontWeight: 600,
     fontSize: '26px',
-    marginTop: theme.spacing(2),
+    margin: theme.spacing(2, 0, 2, 0),
   },
-  decription: {
+  description: {
     fontFamily: 'Poppins',
     fontStyle: 'normal',
     fontWeight: 'normal',
     fontSize: '16px',
-    margin: theme.spacing(2, 0, 4, 0),
-    width: 400,
+    margin: theme.spacing(2, 0, 0, 0),
+  },
+  descriptionEmail: {
+    color: '#1565D8',
+    fontFamily: 'Poppins',
+    fontStyle: 'normal',
+    fontWeight: 600,
+    fontSize: '16px',
+    margin: theme.spacing(0, 0, 4, 0),
   },
   field: {
     background: '#ECF2F7',
   },
   submit: {
-    margin: theme.spacing(4, 0, 5),
+    margin: theme.spacing(4, 0, 2),
     background: '#1565D8',
     borderRadius: '8px',
     height: '44px',
@@ -96,7 +103,8 @@ export default function Verification() {
           >
             <img src={phone} alt="phone" />
           </Grid>
-          <Typography className={classes.decription} align="center"> Enter the verification code we sent to ducminhvo@gmail.com</Typography>
+          <Typography className={classes.description} align="center">Enter the verification code we sent to</Typography>
+          <Typography className={classes.descriptionEmail} align="center">ducminhvo@gmail.com</Typography>
           <TextField
             id="outlined-code-input"
             label="Type code here"
@@ -120,8 +128,8 @@ export default function Verification() {
             Verify
           </Button>
           <Grid container>
-            <Grid item xs={12} style={{ textAlign: 'center' }}>
-              Don&apos;t gate the code?
+            <Grid item xs={12} style={{ textAlign: 'center', fontWeight: 600 }}>
+              Didn&apos;t gate the code?
               <Link href="#/" className={classes.hyperlink}>
                 Resend
               </Link>
@@ -132,9 +140,6 @@ export default function Verification() {
               </Link>
             </Grid>
           </Grid>
-          {/* <Box mt={8}>
-            <Copyright />
-          </Box> */}
         </Container>
       </Grid>
     </BackgroundForm>

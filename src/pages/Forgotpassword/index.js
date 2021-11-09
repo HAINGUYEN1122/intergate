@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '26px',
     marginTop: theme.spacing(2),
   },
-  decription: {
+  description: {
     fontFamily: 'Poppins',
     fontStyle: 'normal',
     fontWeight: 'normal',
@@ -97,7 +97,7 @@ export default function Forgotpassword() {
       <Grid
         container
         direction="column"
-        justifyContent="start"
+        justifyContent="center"
         alignItems="center"
         className={classes.containerLogin}
       >
@@ -109,13 +109,13 @@ export default function Forgotpassword() {
           >
             Forgot your password?
           </Typography>
-          <Typography className={classes.decription}> Please give us your email, well help you. </Typography>
+          <Typography className={classes.description}> Please give us your email, well help you. </Typography>
           <InputLabel className={classes.label} color="secondary">E-mail</InputLabel>
           <OutlinedInput
             fullWidth
             name="email"
             autoComplete="email"
-            placeholder="Type your e-mail or phone number"
+            placeholder="Type your e-mail"
             autoFocus
           // value={email}
           // onChange={onChangeEmail}

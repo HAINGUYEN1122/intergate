@@ -1,7 +1,7 @@
 import './App.css';
 import styled from 'styled-components/macro';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import retsetpass from './pages/resetPass';
+import resetpass from './pages/resetPass';
 import DashBoard from './pages/dashboard';
 import Header from './pages/header';
 import Login from './pages/Login';
@@ -19,7 +19,7 @@ function App() {
           <Route path="/login" component={Login} />
           <Route path="/forgotpassword" component={Forgotpassword} />
           <Route path="/verification" component={Verification} />
-          <Route path="/newpassword" component={retsetpass} />
+          <Route path="/newpassword" component={resetpass} />
           <Route path="/verification3" component={Verification3} />
           <Header>
             <Content>

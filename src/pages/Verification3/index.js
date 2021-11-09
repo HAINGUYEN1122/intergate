@@ -35,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
     width: 400,
   },
   submit: {
+    width: '440px',
     margin: theme.spacing(4, 0, 5),
     background: '#1565D8',
     borderRadius: '8px',
@@ -56,6 +57,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
   },
   hyperlink: {
+    color: '#1565D8',
     margin: theme.spacing(2, 0, 2, 0),
     fontFamily: 'Poppins',
     fontStyle: 'normal',
@@ -74,7 +76,7 @@ export default function Verification3() {
       <Grid
         container
         direction="column"
-        justifyContent="space-between"
+        justifyContent="center"
         alignItems="center"
         className={classes.containerLogin}
       >
@@ -89,7 +91,7 @@ export default function Verification3() {
             <Typography className={classes.title} align="center"> Your password has been changed </Typography>
             <img src={ticker} alt="ticker" />
             <Link href="/login" className={classes.hyperlink}>
-              Login now!
+              Log in now!!!
             </Link>
             <Button
               type="submit"
@@ -101,12 +103,9 @@ export default function Verification3() {
               })}
               href="/login"
             >
-              Login
+              Log in
             </Button>
           </Grid>
-          {/* <Box mt={8}>
-            <Copyright />
-          </Box> */}
         </Container>
       </Grid>
     </BackgroundForm>
