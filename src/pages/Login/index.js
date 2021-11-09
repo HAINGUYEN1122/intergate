@@ -9,7 +9,6 @@ import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import { InputLabel } from '@material-ui/core';
-import ArrowBackIos from '@material-ui/icons/ArrowBackIos';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Alert from '@material-ui/lab/Alert';
@@ -22,14 +21,13 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { useInput, useCheckbox } from '../../hooks/input.hooks';
 import authenticationService from '../../services/authentication';
-import Logo from '../../assets/images/logo.png';
-import Banned from '../../assets/images/11.png';
 import hand from '../../assets/images/waving-hand.png';
 import {
   BAD_REQUEST,
   OK,
   USER_REMEMBER_LOCAL_STORE,
 } from '../../constants';
+import BackgroundForm from '../BackgroundForm';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -177,152 +175,95 @@ export default function SignIn(props) {
     }
   };
   return (
-    <Grid container>
+    <BackgroundForm>
       <Grid
         container
         direction="column"
-        wrap="nowrap"
-        item
-        xs={6}
-        className={classes.container}
+        justifyContent="center"
+        alignItems="center"
+        className={classes.containerLogin}
       >
-        <img
-          justifyContent="flex-start"
-          src={Logo}
-          className={classes.logo}
-          alt="Logo"
-        />
-        <Grid
-          container
-          direction="column"
-          justifyContent="center"
-          alignItems="center"
-          className={classes.backgroundContainer}
-        >
-          <img
-            src={Banned}
-            alt="Banned"
-          />
+        <Container maxWidth="xs">
+          <img src={hand} alt="hand" />
           <Typography
-            align="center"
-            textAlign="left"
+            align="justify"
             className={classes.title}
           >
-            Grow your business faster with BattleCry
+            Welcome back!
           </Typography>
-          <Typography
-            align="center"
-            className={classes.decription}
-          >
-            Connect your bank card, and create accounts in the selected currency.
-          </Typography>
-        </Grid>
-      </Grid>
-      <Grid
-        container
-        direction="column"
-        wrap="nowrap"
-        item
-        xs={6}
-      >
-        <div className={classes.backButton}>
-          <Button startIcon={<ArrowBackIos />}>
-            Back
-          </Button>
-        </div>
-        <Grid
-          container
-          direction="column"
-          justifyContent="center"
-          alignItems="center"
-          className={classes.containerLogin}
-        >
-          <Container maxWidth="xs">
-            <img src={hand} alt="hand" />
-            <Typography
-              align="justify"
-              className={classes.title}
-            >
-              Welcome back!
-            </Typography>
-            <Typography className={classes.decription}> Please login to access your account. </Typography>
-            <InputLabel className={classes.label} color="secondary">E-mail or phone number</InputLabel>
-            <OutlinedInput
-              fullWidth
-              name="email"
-              autoComplete="email"
-              placeholder="Type your e-mail or phone number"
-              autoFocus
-              value={email}
-              onChange={onChangeEmail}
-              className={classes.field}
-            />
-            <InputLabel className={classes.label} htmlFor="outlined-adornment-password">Password</InputLabel>
-            <OutlinedInput
-              fullWidth
-              name="password"
-              type="password"
-              id="password"
-              placeholder="Type your password"
-              className={classes.field}
-              type={showPassword ? 'text' : 'password'}
-              autoComplete="current-password"
-              endAdornment={(
-                <InputAdornment
-                  position="end"
+          <Typography className={classes.decription}> Please login to access your account. </Typography>
+          <InputLabel className={classes.label} color="secondary">E-mail or phone number</InputLabel>
+          <OutlinedInput
+            fullWidth
+            name="email"
+            autoComplete="email"
+            placeholder="Type your e-mail or phone number"
+            autoFocus
+            value={email}
+            onChange={onChangeEmail}
+            className={classes.field}
+          />
+          <InputLabel className={classes.label} htmlFor="outlined-adornment-password">Password</InputLabel>
+          <OutlinedInput
+            fullWidth
+            name="password"
+            type="password"
+            id="password"
+            placeholder="Type your password"
+            className={classes.field}
+            type={showPassword ? 'text' : 'password'}
+            autoComplete="current-password"
+            endAdornment={(
+              <InputAdornment
+                position="end"
+              >
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={toggleShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  edge="end"
                 >
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={toggleShowPassword}
-                    onMouseDown={handleMouseDownPassword}
-                    edge="end"
-                  >
-                    {{ password }.showPassword
-                      ? <Visibility /> : <VisibilityOff />}
-                  </IconButton>
-                </InputAdornment>
+                  {{ password }.showPassword
+                    ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
+              </InputAdornment>
                 )}
-              value={password}
-              onChange={onChangePassword}
-            />
-            <Grid item xs>
+            value={password}
+            onChange={onChangePassword}
+          />
+          <Grid item xs>
+            <Link href="/forgotpassword" className={classes.hyperlink}>
+              Forgot password?
+            </Link>
+          </Grid>
+          <FormControlLabel
+            control={<Checkbox checked={checked} onChange={onChangeChecked} value="remember" color="primary" />}
+            label="Remember me"
+          />
+          {errorMess && <Alert severity="error">{messErr}</Alert>}
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={clsx(classes.submit, {
+              [classes.disabled]: isSubmit,
+            })}
+            onClick={login}
+            disabled={isSubmit}
+          >
+            {isSubmit ? <CircularProgress size={24} color="secondary" /> : 'Log In'}
+          </Button>
+          <Grid container>
+            <Grid item xs={12} className={classes.link}>
+              Don&apos;t have an account?
               <Link href="#/" className={classes.hyperlink}>
-                Forgot password?
+                  &nbsp;Sign Up
               </Link>
             </Grid>
-            <FormControlLabel
-              control={<Checkbox checked={checked} onChange={onChangeChecked} value="remember" color="primary" />}
-              label="Remember me"
-            />
-            {errorMess && <Alert severity="error">{messErr}</Alert>}
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={clsx(classes.submit, {
-                [classes.disabled]: isSubmit,
-              })}
-              onClick={login}
-              disabled={isSubmit}
-            >
-              {isSubmit ? <CircularProgress size={24} color="secondary" /> : 'Log In'}
-            </Button>
-            <Grid container>
-              <Grid item xs={12} className={classes.link}>
-                Don&apos;t have an account?
-                <Link href="#/" className={classes.hyperlink}>
-                  &nbsp;Sign Up
-                </Link>
-              </Grid>
-            </Grid>
-          </Container>
-        </Grid>
-
-        {/* <Box mt={8}>
-            <Copyright />
-          </Box> */}
+          </Grid>
+        </Container>
       </Grid>
-    </Grid>
+    </BackgroundForm>
   );
 }
