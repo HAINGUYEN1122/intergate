@@ -1,11 +1,15 @@
 import './App.css';
 import styled from 'styled-components/macro';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import resetpass from './pages/resetPass';
 import DashBoard from './pages/dashboard';
 import Header from './pages/header';
 import Login from './pages/Login';
+import Verification3 from './pages/Verification3';
+import Verification from './pages/Verification';
 import PrivateRoute from './Route/PrivateRoute';
 import PageNotFound from './pages/PageNotFound';
+import Forgotpassword from './pages/Forgotpassword';
 
 function App() {
   return (
@@ -13,6 +17,10 @@ function App() {
       <Router>
         <Switch>
           <Route path="/login" component={Login} />
+          <Route path="/forgotpassword" component={Forgotpassword} />
+          <Route path="/verification" component={Verification} />
+          <Route path="/newpassword" component={resetpass} />
+          <Route path="/verification3" component={Verification3} />
           <Header>
             <Content>
               <Switch>
@@ -29,7 +37,6 @@ function App() {
 }
 
 export default App;
-
 const Container = styled.div`
   width: 100%;
 `;

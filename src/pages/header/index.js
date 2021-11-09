@@ -102,6 +102,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function MiniDrawer({ children, location }) {
+  console.log('location:', location);
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = useState(false);
@@ -192,7 +193,7 @@ export default function MiniDrawer({ children, location }) {
                 button
                 key={menuItem.name}
                 className={clsx(classes.menuItem, {
-                  [classes.activeMenu]: location.pathname === menuItem.path,
+                  [classes.activeMenu]: location && location.pathname === menuItem.path,
                 })}
               >
                 <ListItemIcon>{menuItem.icon}</ListItemIcon>
