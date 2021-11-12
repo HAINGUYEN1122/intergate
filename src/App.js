@@ -1,6 +1,7 @@
 import './App.css';
 import styled from 'styled-components/macro';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import HomePage from './pages/homePage';
 import resetpass from './pages/resetPass';
 import DashBoard from './pages/dashboard';
 import Header from './pages/header';
@@ -16,6 +17,7 @@ function App() {
     <Container className="app">
       <Router>
         <Switch>
+          <Route path="/home" component={HomePage} />
           <Route path="/login" component={Login} />
           <Route path="/forgotpassword" component={Forgotpassword} />
           <Route path="/verification" component={Verification} />

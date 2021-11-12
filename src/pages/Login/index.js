@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '26px',
     marginTop: theme.spacing(2),
   },
-  decription: {
+  description: {
     fontFamily: 'Poppins',
     fontStyle: 'normal',
     fontWeight: 'normal',
@@ -191,7 +191,7 @@ export default function SignIn(props) {
           >
             Welcome back!
           </Typography>
-          <Typography className={classes.decription}> Please login to access your account. </Typography>
+          <Typography className={classes.description}> Please login to access your account. </Typography>
           <InputLabel className={classes.label} color="secondary">E-mail or phone number</InputLabel>
           <OutlinedInput
             fullWidth

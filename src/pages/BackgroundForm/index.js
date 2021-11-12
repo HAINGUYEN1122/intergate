@@ -7,15 +7,15 @@ import Grid from '@material-ui/core/Grid';
 import ArrowBackIos from '@material-ui/icons/ArrowBackIos';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import { useHistory } from 'react-router-dom';
 import Logo from '../../assets/images/logo.png';
 import Banned from '../../assets/images/11.png';
 
 const useStyles = makeStyles((theme) => ({
   container: {
     backgroundColor: '#E2F0FF',
-    height: '100vh',
   },
-  backgroundContainer: {
+  fullHeight: {
     height: '100%',
   },
   title: {
@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '26px',
     marginTop: theme.spacing(2),
   },
-  decription: {
+  description: {
     fontFamily: 'Poppins',
     fontStyle: 'normal',
     fontWeight: 'normal',
@@ -51,12 +51,22 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '16px',
     },
   },
+  gridBanner: {
+    maxWidth: '80%',
+    maxHeight: '50%',
+  },
+  banner: {
+    maxWidth: '100%',
+    maxHeight: '100%',
+  },
 }));
 
 export default function BackgroundForm({ children }) {
   const classes = useStyles();
+  const history = useHistory();
+
   return (
-    <Grid container>
+    <Grid container className={classes.fullHeight}>
       <Grid
         container
         direction="column"
@@ -76,12 +86,15 @@ export default function BackgroundForm({ children }) {
           direction="column"
           justifyContent="center"
           alignItems="center"
-          className={classes.backgroundContainer}
+          className={classes.fullHeight}
         >
-          <img
-            src={Banned}
-            alt="Banned"
-          />
+          <div className={classes.gridBanner}>
+            <img
+              src={Banned}
+              alt="Banned"
+              className={classes.banner}
+            />
+          </div>
           <Typography
             align="center"
             textAlign="left"
@@ -91,7 +104,7 @@ export default function BackgroundForm({ children }) {
           </Typography>
           <Typography
             align="center"
-            className={classes.decription}
+            className={classes.description}
           >
             Connect your bank card, and create accounts in the selected currency.
           </Typography>
@@ -105,7 +118,12 @@ export default function BackgroundForm({ children }) {
         xs={6}
       >
         <div className={classes.backButton}>
-          <Button startIcon={<ArrowBackIos />}>
+          <Button
+            startIcon={<ArrowBackIos />}
+            onClick={() => {
+              history.push('/home');
+            }}
+          >
             Back
           </Button>
         </div>

@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '26px',
     margin: theme.spacing(2, 0, 4, 0),
   },
-  decription: {
+  description: {
     fontFamily: 'Poppins',
     fontStyle: 'normal',
     fontWeight: 'normal',
