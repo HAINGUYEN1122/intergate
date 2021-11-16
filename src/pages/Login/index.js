@@ -124,7 +124,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn(props) {
+export default function SignIn({ history }) {
   SignIn.propTypes = {
     history: PropTypes.shape({
       push: PropTypes.func.isRequired,
@@ -161,7 +161,7 @@ export default function SignIn(props) {
         if (status === OK) {
           authenticationService.updateUser(data);
           localStorage.setItem(USER_REMEMBER_LOCAL_STORE, checked ? JSON.stringify({ email, password }) : null);
-          props.history.push('/');
+          history.push('/');
         }
       } catch (error) {
         setError(true);

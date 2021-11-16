@@ -1,6 +1,8 @@
 import './App.css';
 import styled from 'styled-components/macro';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/date-fns';
 import HomePage from './pages/homePage';
 import resetpass from './pages/resetPass';
 import DashBoard from './pages/dashboard';
@@ -14,27 +16,29 @@ import Forgotpassword from './pages/Forgotpassword';
 
 function App() {
   return (
-    <Container className="app">
-      <Router>
-        <Switch>
-          <Route path="/home" component={HomePage} />
-          <Route path="/login" component={Login} />
-          <Route path="/forgotpassword" component={Forgotpassword} />
-          <Route path="/verification" component={Verification} />
-          <Route path="/newpassword" component={resetpass} />
-          <Route path="/verification3" component={Verification3} />
-          <Header>
-            <Content>
-              <Switch>
-                <PrivateRoute exact path="/dashboard" component={DashBoard} />
-                <PrivateRoute exact path="/" topath="/dashboard" />
-                <PrivateRoute component={PageNotFound} />
-              </Switch>
-            </Content>
-          </Header>
-        </Switch>
-      </Router>
-    </Container>
+    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+      <Container className="app">
+        <Router>
+          <Switch>
+            <Route path="/home" component={HomePage} />
+            <Route path="/login" component={Login} />
+            <Route path="/forgotpassword" component={Forgotpassword} />
+            <Route path="/verification" component={Verification} />
+            <Route path="/newpassword" component={resetpass} />
+            <Route path="/verification3" component={Verification3} />
+            <Header>
+              <Content>
+                <Switch>
+                  <PrivateRoute exact path="/dashboard" component={DashBoard} />
+                  <PrivateRoute exact path="/" topath="/dashboard" />
+                  <PrivateRoute component={PageNotFound} />
+                </Switch>
+              </Content>
+            </Header>
+          </Switch>
+        </Router>
+      </Container>
+    </MuiPickersUtilsProvider>
   );
 }
 

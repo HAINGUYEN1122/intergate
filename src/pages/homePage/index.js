@@ -115,7 +115,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function HomePage(props) {
+export default function HomePage({ history }) {
   HomePage.propTypes = {
     history: PropTypes.shape({
       push: PropTypes.func.isRequired,
@@ -187,7 +187,7 @@ export default function HomePage(props) {
                   className={classes.textButton}
                   color="primary"
                   onClick={() => {
-                    props.history.push('/');
+                    history.push('/');
                   }}
                 >
                   Sign up
@@ -197,7 +197,7 @@ export default function HomePage(props) {
                 <Button
                   className={clsx(classes.textButton, classes.greyColor)}
                   onClick={() => {
-                    props.history.push('/login');
+                    history.push('/login');
                   }}
                 >
                   Log in
