@@ -4,10 +4,10 @@ import './index.css';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
-import reducer from './reducers';
+import reducer from './root-reducer';
 import reportWebVitals from './reportWebVitals';
 import App from './App';
-import rootSaga from './sagas';
+import rootSaga from './root-sagas';
 
 const sagaMiddleware = createSagaMiddleware();
 
