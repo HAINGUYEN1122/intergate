@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/jsx-no-duplicate-props */
 /* eslint-disable max-len */
 import React, { useState } from 'react';
@@ -23,8 +24,8 @@ import { useInput, useCheckbox } from '../../hooks/input.hooks';
 import authenticationService from '../../services/authentication';
 import hand from '../../assets/images/waving-hand.png';
 import {
-  BAD_REQUEST,
-  OK,
+  // BAD_REQUEST,
+  // OK,
   USER_REMEMBER_LOCAL_STORE,
 } from '../../constants';
 import BackgroundForm from '../BackgroundForm';
@@ -124,7 +125,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn({ history }) {
+export default function SignIn(props) {
   SignIn.propTypes = {
     history: PropTypes.shape({
       push: PropTypes.func.isRequired,
@@ -155,22 +156,14 @@ export default function SignIn({ history }) {
       setMessErr('Please input username or password.');
     } else {
       setSubmit(true);
-      try {
-        const value = await authenticationService.login(email, password);
-        const { status, data } = value;
-        if (status === OK) {
-          authenticationService.updateUser(data);
-          localStorage.setItem(USER_REMEMBER_LOCAL_STORE, checked ? JSON.stringify({ email, password }) : null);
-          history.push('/');
-        }
-      } catch (error) {
-        setError(true);
-        if (error.response && error.response.status === BAD_REQUEST) {
-          setMessErr('username or password is incorrect.');
-        } else {
-          setMessErr(error.message);
-        }
-      }
+      const userData = {
+        firstName: 'Hai',
+        lastName: 'Nguyen',
+        token: 'test',
+      };
+      await authenticationService.login(userData);
+      authenticationService.updateUser(userData);
+      props.history.push('/');
       setSubmit(false);
     }
   };

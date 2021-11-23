@@ -13,6 +13,7 @@ import Verification from './pages/Verification';
 import PrivateRoute from './Route/PrivateRoute';
 import PageNotFound from './pages/PageNotFound';
 import Forgotpassword from './pages/Forgotpassword';
+import signup from './pages/Signup';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Switch>
             <Route path="/home" component={HomePage} />
             <Route path="/login" component={Login} />
+            <Route path="/signup" component={signup} />
             <Route path="/forgotpassword" component={Forgotpassword} />
             <Route path="/verification" component={Verification} />
             <Route path="/newpassword" component={resetpass} />
