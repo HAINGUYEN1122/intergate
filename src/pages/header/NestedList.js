@@ -171,7 +171,7 @@ export default function NestedList(location) {
             to={items.path}
             button
             key={items.key}
-            onclick={(key) => handleClick(key)}
+            onClick={(key) => handleClick(key)}
             className={clsx(classes.menuItem, {
               [classes.activeMenu]: location && location.pathname === items.path,
             })}
