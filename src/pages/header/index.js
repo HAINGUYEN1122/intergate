@@ -36,7 +36,7 @@ import NestedList from './NestedList';
 import Logo from '../../assets/images/logo.png';
 import MenuProfile from './MenuProfile';
 
-const drawerWidth = 240;
+const drawerWidth = 300;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -46,20 +46,12 @@ const useStyles = makeStyles((theme) => ({
     width: 40,
     height: 40,
   },
-  labelitem: {
-
-  },
   toolbarhead: {
     display: 'flex',
     alignItems: 'center',
     background: '#EB5569',
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
-  },
-  List: {
-    backgroundcolor: '#1D2837',
-    width: '100%',
-    maxWidth: 360,
   },
   Toolbar: {
     padding: '0px 0px 0px 0px',
@@ -151,46 +143,6 @@ export default function MiniDrawer({ children, location }) {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-  // const handleClick = key => () => {
-  //   console.log(key);
-  //   this.setState({ [key]: !this.state[key] });
-  // };
-  // const MenuList = [
-  //   {
-  //     key: 'dashboard',
-  //     name: 'Dashboard',
-  //     path: '/dashboard',
-  //     icon: <DashboardIcon />,
-  //     items: [
-  //       {
-  //         key: 'dashboard',
-  //         name: 'Dashboard',
-  //         path: '/dashboard',
-  //         icon: <DashboardIcon />,
-  //       },
-  //       {
-  //         key: 'dashboard',
-  //         name: 'Dashboard',
-  //         path: '/dashboard',
-  //         icon: <DashboardIcon />,
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     key: 'drafts',
-  //     name: 'Drafts',
-  //     path: '/drafts',
-  //     icon: <DraftsIcon />,
-  //     items: [{
-  //       key: 'send', name: 'Sent Items', path: '/drafts', icon: <SendIcon />,
-  //     }],
-  //   },
-  // ];
-  // const renderTree = (nodes) => (
-  //   <TreeItem key={nodes.id} nodeId={nodes.id} label={nodes.name}>
-  //     {Array.isArray(nodes.children) ? nodes.children.map((node) => renderTree(node)) : null}
-  //   </TreeItem>
-  // );
   return (
     <div className={classes.root}>
       <CssBaseline />

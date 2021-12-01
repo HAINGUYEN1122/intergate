@@ -1,7 +1,7 @@
+/* eslint-disable max-len */
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-// import ListSubheader from '@material-ui/core/ListSubheader';
 import List from '@material-ui/core/List';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
@@ -12,28 +12,32 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
 import SendIcon from '@material-ui/icons/Send';
 import PersonIcon from '@material-ui/icons/Person';
-// import DraftsIcon from '@material-ui/icons/Drafts';
-// import SendIcon from '@material-ui/icons/Send';
+import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Connection from '@material-ui/icons/AccountBalanceWallet';
 import DashboardIcon from '@material-ui/icons/Dashboard';
+import SwapVertIcon from '@material-ui/icons/SwapVert';
+// import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
     maxWidth: 360,
-    backgroundColor: '#1D2837',
   },
-  nested: {
-    padding: theme.spacing(2, 0, 2, 0),
+  submenuitem: {
     backgroundColor: '#0B0F14',
   },
-  activeMenu: {
-    backgroundColor: '#0B0F14',
-    color: '#EB5569',
+  subtext: {
+    color: '#B0B6C6',
+    '& .MuiTypography-body1': {
+      fontFamily: 'Titillium Web',
+      fontSize: 16,
+      fontStyle: 'normal',
+    },
   },
   text: {
+    margin: theme.spacing(1),
     '& .MuiTypography-body1': {
       fontFamily: 'Titillium Web',
       fontSize: 16,
@@ -43,10 +47,25 @@ const useStyles = makeStyles((theme) => ({
   },
   icon: {
     color: '#B0B6C6',
+    paddingRight: theme.spacing(0),
   },
   menuItem: {
-    color: 'inherit !important',
-    textDecoration: 'none',
+    '&:hover': {
+      backgroundColor: '#0B0F14',
+    },
+    padding: theme.spacing(2),
+    marginTop: theme.spacing(2),
+  },
+  activeMenu: {
+    '&:hover': {
+      color: '#EB5569',
+    },
+  },
+  subactiveMenu: {
+    '&:hover': {
+      backgroundColor: '#EB5569',
+      color: '#FFFFFF',
+    },
   },
 }));
 
@@ -78,10 +97,10 @@ export default function NestedList(location) {
     {
       key: 'connection',
       name: 'Source connection',
-      path: '/drafts',
+      path: '/sconnection',
       icon: <Connection />,
       items: [{
-        key: 'connection', name: 'Source connection', path: '/connection',
+        key: 'connection', name: 'Source connection', path: '/sconnection',
       }],
     },
     {
@@ -112,7 +131,7 @@ export default function NestedList(location) {
       key: 'campaign',
       name: 'Campaign',
       path: '/campaign',
-      icon: <PersonIcon />,
+      icon: <SwapVertIcon />,
       items: [
         {
           key: 'Campaign',
@@ -152,10 +171,13 @@ export default function NestedList(location) {
   ];
   const classes = useStyles();
   // const [close, setClose] = React.useState(true);
-  const [open, setOpen] = React.useState(false);
-  const handleClick = (key) => {
-    console.log(key);
-    setOpen(!open);
+  const [key, setKey] = React.useState('');
+  const handleClick = (keyMenu) => {
+    if (keyMenu === key) {
+      setKey('');
+    } else {
+      setKey(keyMenu);
+    }
   };
 
   return (
@@ -164,44 +186,59 @@ export default function NestedList(location) {
       className={classes.root}
     >
       {
-      MenuList.map((items) => (
-        <div>
-          <ListItem
-            component={Link}
-            to={items.path}
-            button
-            key={items.key}
-            onClick={(key) => handleClick(key)}
-            className={clsx(classes.menuItem, {
-              [classes.activeMenu]: location && location.pathname === items.path,
-            })}
-          >
-            <ListItemIcon className={classes.icon}>
-              {items.icon}
-            </ListItemIcon>
-            <ListItemText className={classes.text}>{items.name}</ListItemText>
-            {open ? <ExpandLess /> : <ExpandMore />}
-          </ListItem>
-          <Collapse component="li" timeout="auto" unmountOnExit className={classes.nested}>
-            <List
-              component="div"
-              disablePadding
+      MenuList.map((items) => {
+        const open = key === items.key;
+        return (
+          <div>
+            <ListItem
+              component={Link}
+              to={items.path}
+              button
+              key={items.key}
+              onClick={() => handleClick(items.key)}
+              className={clsx(classes.menuItem, {
+                [classes.activeMenu]: location && location.pathname === items.path,
+              })}
             >
-              {items.items.map((sub) => (
-                <ListItem
-                  button
-                  component={Link}
-                  to={sub.path}
-                >
-                  <ListItemText inset primary={sub.name} className={classes.text} />
-                </ListItem>
-              ))}
-            </List>
-          </Collapse>
-        </div>
-      ))
+              <ListItemIcon className={clsx(classes.icon, classes.activeMenu)}>
+                {items.icon}
+              </ListItemIcon>
+              <ListItemText className={clsx(classes.text, classes.activeMenu)}>{items.name}</ListItemText>
+              {open ? <ExpandLess className={clsx(classes.icon, classes.activeMenu)} /> : <ExpandMore className={clsx(classes.icon, classes.activeMenu)} />}
+            </ListItem>
+            <Collapse in={open} component="li" timeout="auto" unmountOnExit className={classes.nested}>
+              <List
+                component="div"
+                disablePadding
+              >
+                {items.items.map((sub) => (
+                  <ListItem
+                    button
+                    component={Link}
+                    to={sub.path}
+                    className={clsx(classes.submenuitem, classes.subactiveMenu)}
+                  >
+                    <ListItemText inset primary={sub.name} className={clsx(classes.subtext, classes.subactiveMenu)} />
+                  </ListItem>
+                ))}
+              </List>
+            </Collapse>
+          </div>
+        );
+      })
 }
+      <ListItem
+        component={Link}
+        button
+        className={classes.menuItem}
+      >
+        <ListItemIcon className={clsx(classes.icon, classes.activeMenu)}>
+          <DoubleArrowIcon />
+        </ListItemIcon>
+        <ListItemText className={clsx(classes.text, classes.activeMenu)}>Log out</ListItemText>
+      </ListItem>
     </List>
+
   );
 }
 NestedList.defaultProps = {
