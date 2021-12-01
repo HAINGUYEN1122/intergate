@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-shadow */
 /* eslint-disable import/no-duplicates */
 /* eslint-disable react-hooks/rules-of-hooks */
@@ -22,13 +23,15 @@ import { useCheckbox, useInput } from '../../hooks/input.hooks';
 // import {
 // BAD_REQUEST,
 // OK,
-// USER_REMEMBER_LOCAL_STORE,
+//   USER_REMEMBER_LOCAL_STORE,
 // } from '../../constants';
 
 const useStyles = makeStyles((theme) => ({
   container: {
     backgroundColor: '#E2F0FF',
-    height: '100vh',
+  },
+  containerform: {
+    padding: theme.spacing(1, 10, 1, 10),
   },
   backgroundContainer: {
     height: '100%',
@@ -127,12 +130,10 @@ const useStyles = makeStyles((theme) => ({
   month: {
     width: 259,
     border: 6,
-    marginRight: theme.spacing(6),
   },
   dateyear: {
     width: 159,
     border: 6,
-    marginRight: theme.spacing(6),
   },
 }));
 
@@ -221,9 +222,10 @@ export default function signup() {
         </div>
         <Grid
           container
-          justifyContent="space-evenly"
-          alignItems="center"
           direction="row"
+          justifyContent="space-between"
+          alignItems="baseline"
+          className={classes.containerform}
         >
           <Grid
             alignItems="center"
@@ -253,6 +255,14 @@ export default function signup() {
               onChange={onChangeName}
             />
           </Grid>
+        </Grid>
+        <Grid
+          container
+          direction="row"
+          justifyContent="space-between"
+          alignItems="baseline"
+          className={classes.containerform}
+        >
           <Grid
             alignItems="center"
             direction="column"
@@ -284,6 +294,14 @@ export default function signup() {
               onChange={onChangeUsername}
             />
           </Grid>
+        </Grid>
+        <Grid
+          container
+          direction="row"
+          justifyContent="space-between"
+          alignItems="baseline"
+          className={classes.containerform}
+        >
           <Grid
             alignItems="center"
             direction="column"
@@ -314,6 +332,14 @@ export default function signup() {
               onChange={onChangeCountry}
             />
           </Grid>
+        </Grid>
+        <Grid
+          container
+          direction="row"
+          justifyContent="space-between"
+          alignItems="baseline"
+          className={classes.containerform}
+        >
           <Grid
             alignItems="center"
             direction="column"
@@ -344,65 +370,74 @@ export default function signup() {
               onChange={onChangeaAddress}
             />
           </Grid>
-          <Grid
-            alignItems="center"
-            direction="column"
-          >
-            <InputLabel className={classes.label} htmlFor="outlined-birthday">Date of birth*</InputLabel>
-            <DatePicker
-              views={['month']}
-              label="Month"
-              format="MM"
-              disableToolbar
-              leftArrowIcon={null}
-              rightArrowIcon={null}
-              className={classes.month}
-              value={selectedDate}
-              onChange={handleDateChange}
-              size="small"
-              variant="inline"
-              inputVariant="outlined"
-            />
-            <DatePicker
-              views={['date']}
-              label="date only"
-              format="dd"
-              disableToolbar
-              leftArrowIcon={null}
-              rightArrowIcon={null}
-              variant="inline"
-              inputVariant="outlined"
-              value={selectedDate}
-              onChange={handleDateChange}
-              className={classes.dateyear}
-              size="small"
-            />
-            <DatePicker
-              views={['year']}
-              label="Year"
-              format="yyyy"
-              disableToolbar
-              leftArrowIcon={null}
-              rightArrowIcon={null}
-              className={classes.dateyear}
-              value={selectedDate}
-              onChange={handleDateChange}
-              size="small"
-              variant="inline"
-              inputVariant="outlined"
-            />
-
-            <Grid
-              alignItems="center"
-              direction="column"
-            >
-              <FormControlLabel
-                control={<Radio checked={checked} onChange={onChangeChecked} value="remember" color="primary" />}
-                label="I agree to terms and conditions"
-              />
-              {errorMess && <Alert severity="error">{messErr}</Alert>}
-            </Grid>
-          </Grid>
+        </Grid>
+        <Grid
+          alignItems="center"
+          direction="column"
+          className={classes.containerform}
+        >
+          <InputLabel className={classes.label} htmlFor="outlined-birthday">Date of birth*</InputLabel>
+        </Grid>
+        <Grid
+          container
+          direction="row"
+          justifyContent="space-between"
+          alignItems="baseline"
+          className={classes.containerform}
+        >
+          <DatePicker
+            views={['month']}
+            label="Month"
+            format="MM"
+            disableToolbar
+            leftArrowIcon={null}
+            rightArrowIcon={null}
+            className={classes.month}
+            value={selectedDate}
+            onChange={handleDateChange}
+            size="small"
+            variant="inline"
+            inputVariant="outlined"
+          />
+          <DatePicker
+            views={['date']}
+            label="Date"
+            format="dd"
+            disableToolbar
+            leftArrowIcon={null}
+            rightArrowIcon={null}
+            variant="inline"
+            inputVariant="outlined"
+            value={selectedDate}
+            onChange={handleDateChange}
+            className={classes.dateyear}
+            size="small"
+          />
+          <DatePicker
+            views={['year']}
+            label="Year"
+            format="yyyy"
+            disableToolbar
+            leftArrowIcon={null}
+            rightArrowIcon={null}
+            className={classes.dateyear}
+            value={selectedDate}
+            onChange={handleDateChange}
+            size="small"
+            variant="inline"
+            inputVariant="outlined"
+          />
+        </Grid>
+        <Grid
+          alignItems="center"
+          direction="column"
+          className={classes.containerform}
+        >
+          <FormControlLabel
+            control={<Radio checked={checked} onChange={onChangeChecked} value="remember" color="primary" />}
+            label="I agree to terms and conditions"
+          />
+          {errorMess && <Alert severity="error">{messErr}</Alert>}
         </Grid>
         <Grid
           container
