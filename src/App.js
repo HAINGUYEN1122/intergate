@@ -13,6 +13,7 @@ import Verification from './pages/Verification';
 import PrivateRoute from './Route/PrivateRoute';
 import PageNotFound from './pages/PageNotFound';
 import Forgotpassword from './pages/Forgotpassword';
+import ManagedCustomer from './pages/Customer/ManagedCustomer';
 
 function App() {
   return (
@@ -30,7 +31,9 @@ function App() {
               <Content>
                 <Switch>
                   <PrivateRoute exact path="/dashboard" component={DashBoard} />
+                  <PrivateRoute exact path="/customer/manage" component={ManagedCustomer} />
                   <PrivateRoute exact path="/" topath="/dashboard" />
+                  <PrivateRoute exact path="/customer" topath="/customer/manage" />
                   <PrivateRoute component={PageNotFound} />
                 </Switch>
               </Content>
