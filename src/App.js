@@ -16,6 +16,7 @@ import PageNotFound from './pages/PageNotFound';
 import Sconnection from './pages/Sconnection';
 import Forgotpassword from './pages/Forgotpassword';
 import Jsconnection from './pages/Jsconnection';
+import Allusers from './pages/Allusers';
 import signup from './pages/Signup';
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
                   <PrivateRoute exact path="/sconnection" component={Sconnection} />
                   <PrivateRoute exact path="/jsconnection" component={Jsconnection} />
                   <PrivateRoute exact path="/adddatasource" component={AddDataSource} />
+                  <PrivateRoute exact path="/allusers" component={Allusers} />
                   <PrivateRoute component={PageNotFound} />
                 </Switch>
               </Content>
