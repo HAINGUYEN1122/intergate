@@ -147,18 +147,18 @@ export default function MenuSidebarList({ location, openDrawer }) {
     {
       key: 'account_security',
       name: 'Account & Security',
-      path: '/account_security',
+      path: '/accountsecurity',
       icon: <PersonIcon />,
       items: [
         {
           key: 'all_user',
           name: 'All user',
-          path: '/all_user',
+          path: '/allusers',
         },
         {
           key: 'account_setting',
           name: 'Account Setting',
-          path: '/account_setting',
+          path: '/accountsetting',
         },
         {
           key: 'security',
