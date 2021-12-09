@@ -187,7 +187,7 @@ export default function HomePage({ history }) {
                   className={classes.textButton}
                   color="primary"
                   onClick={() => {
-                    history.push('/');
+                    history.push('/signup');
                   }}
                 >
                   Sign up
