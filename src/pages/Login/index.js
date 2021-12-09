@@ -250,7 +250,7 @@ export default function SignIn(props) {
           <Grid container>
             <Grid item xs={12} className={classes.link}>
               Don&apos;t have an account?
-              <Link href="#/" className={classes.hyperlink}>
+              <Link href="/signup" className={classes.hyperlink}>
                   &nbsp;Sign Up
               </Link>
             </Grid>

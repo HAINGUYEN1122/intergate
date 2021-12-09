@@ -57,6 +57,10 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
   },
   activeMenu: {
+    color: '#EB5569',
+    backgroundColor: '#0B0F14',
+  },
+  hoverMenu: {
     '&:hover': {
       color: '#EB5569',
     },
@@ -69,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function NestedList(location) {
+export default function MenuSidebarList({ location, openDrawer }) {
   const MenuList = [
     {
       key: 'dashboard',
@@ -187,7 +191,7 @@ export default function NestedList(location) {
     >
       {
       MenuList.map((items) => {
-        const open = key === items.key;
+        const open = key === items.key && openDrawer;
         return (
           <div>
             <ListItem
@@ -200,11 +204,29 @@ export default function NestedList(location) {
                 [classes.activeMenu]: location && location.pathname === items.path,
               })}
             >
-              <ListItemIcon className={clsx(classes.icon, classes.activeMenu)}>
+              <ListItemIcon className={clsx(classes.icon, classes.hoverMenu, {
+                [classes.activeMenu]: location && location.pathname === items.path,
+              })}
+              >
                 {items.icon}
               </ListItemIcon>
-              <ListItemText className={clsx(classes.text, classes.activeMenu)}>{items.name}</ListItemText>
-              {open ? <ExpandLess className={clsx(classes.icon, classes.activeMenu)} /> : <ExpandMore className={clsx(classes.icon, classes.activeMenu)} />}
+              <ListItemText className={clsx(classes.text, classes.hoverMenu, {
+                [classes.activeMenu]: location && location.pathname === items.path,
+              })}
+              >
+                {items.name}
+              </ListItemText>
+              {open ? (
+                <ExpandLess className={clsx(classes.icon, classes.hoverMenu, {
+                  [classes.activeMenu]: location && location.pathname === items.path,
+                })}
+                />
+              ) : (
+                <ExpandMore className={clsx(classes.icon, classes.hoverMenu, {
+                  [classes.activeMenu]: location && location.pathname === items.path,
+                })}
+                />
+              )}
             </ListItem>
             <Collapse in={open} component="li" timeout="auto" unmountOnExit className={classes.nested}>
               <List
@@ -232,23 +254,23 @@ export default function NestedList(location) {
         button
         className={classes.menuItem}
       >
-        <ListItemIcon className={clsx(classes.icon, classes.activeMenu)}>
+        <ListItemIcon className={clsx(classes.icon, classes.hoverMenu)}>
           <DoubleArrowIcon />
         </ListItemIcon>
-        <ListItemText className={clsx(classes.text, classes.activeMenu)}>Log out</ListItemText>
+        <ListItemText className={clsx(classes.text, classes.hoverMenu)}>Log out</ListItemText>
       </ListItem>
     </List>
 
   );
 }
-NestedList.defaultProps = {
+MenuSidebarList.defaultProps = {
   location: undefined,
-  children: undefined,
+  openDrawer: false,
 };
 
-NestedList.propTypes = {
+MenuSidebarList.propTypes = {
   location: PropTypes.shape({
     pathname: PropTypes.string.isRequired,
   }),
-  children: PropTypes.shape({}),
+  openDrawer: PropTypes.bool,
 };

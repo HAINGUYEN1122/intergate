@@ -17,7 +17,8 @@ import { InputLabel, Radio } from '@material-ui/core';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import 'react-bootstrap-daterangepicker';
 // import date from '@date-io/date-fns';
-import guy from '../../assets/images/guy.svg';
+import { useHistory } from 'react-router-dom';
+import guy from '../../assets/images/guy.png';
 import Logo from '../../assets/images/logo.png';
 import { useCheckbox, useInput } from '../../hooks/input.hooks';
 // import {
@@ -33,11 +34,16 @@ const useStyles = makeStyles((theme) => ({
   containerform: {
     padding: theme.spacing(1, 10, 1, 10),
   },
-  backgroundContainer: {
+  fullHeight: {
     height: '100%',
   },
-  backgroundForm: {
-    height: '50%',
+  gridBanner: {
+    maxWidth: '80%',
+    maxHeight: '50%',
+  },
+  banner: {
+    maxWidth: '100%',
+    maxHeight: '100%',
   },
   title: {
     width: '400px',
@@ -112,9 +118,6 @@ const useStyles = makeStyles((theme) => ({
     width: 230,
     height: 54,
   },
-  guy: {
-    marginleft: theme.spacing(1),
-  },
   containerLogin: {
     height: '100%',
   },
@@ -135,10 +138,14 @@ const useStyles = makeStyles((theme) => ({
     width: 159,
     border: 6,
   },
+  imageContainer: {
+    textAlign: '-webkit-right',
+  },
 }));
 
 export default function signup() {
   const classes = useStyles();
+  const history = useHistory();
   // const user = JSON.parse(localStorage.getItem(USER_REMEMBER_LOCAL_STORE));
   const { value: email, onChange: onChangeEmail } = useInput();
   const { value: password, onChange: onChangePassword } = useInput();
@@ -167,7 +174,7 @@ export default function signup() {
     }
   };
   return (
-    <Grid container>
+    <Grid container className={classes.fullHeight}>
       <Grid
         container
         direction="column"
@@ -177,7 +184,6 @@ export default function signup() {
         className={classes.container}
       >
         <img
-          justifyContent="flex-start"
           src={Logo}
           className={classes.logo}
           alt="Logo"
@@ -185,29 +191,27 @@ export default function signup() {
         <Grid
           container
           direction="column"
-          justifyContent="flex-end"
           alignItems="center"
+          className={classes.fullHeight}
+          justifyContent="space-between"
         >
-          <Typography
-            align="auto"
-            className={classes.title}
-          >
-            Grow your business faster with BattleCry
-          </Typography>
-        </Grid>
-        <Grid
-          container
-          direction="column"
-          justifyContent="flex-end"
-          alignItems="center"
-          className={classes.backgroundContainer}
-        >
-          <img
-            justifyContent="flex-end"
-            className={classes.guy}
-            src={guy}
-            alt="guy"
-          />
+          <Grid item>
+            <Typography
+              align="auto"
+              className={classes.title}
+            >
+              Grow your business faster with BattleCry
+            </Typography>
+          </Grid>
+          <Grid item className={classes.imageContainer}>
+            <div className={classes.gridBanner}>
+              <img
+                src={guy}
+                alt="guy"
+                className={classes.banner}
+              />
+            </div>
+          </Grid>
         </Grid>
       </Grid>
       <Grid
@@ -216,7 +220,12 @@ export default function signup() {
         xs={8}
       >
         <div className={classes.backButton}>
-          <Button startIcon={<ArrowBackIos />}>
+          <Button
+            startIcon={<ArrowBackIos />}
+            onClick={() => {
+              history.push('/home');
+            }}
+          >
             Back
           </Button>
         </div>

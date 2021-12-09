@@ -32,7 +32,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import PropTypes from 'prop-types';
 // import { Link } from 'react-router-dom';
 import { Grid } from '@material-ui/core';
-import NestedList from './NestedList';
+import MenuSidebarList from './MenuSidebarList';
 import Logo from '../../assets/images/logo.png';
 import MenuProfile from './MenuProfile';
 
@@ -214,7 +214,7 @@ export default function MiniDrawer({ children, location }) {
             </IconButton>
           </div>
           <Divider />
-          <NestedList />
+          <MenuSidebarList openDrawer={open} location={location} />
         </Drawer>
         <main className={classes.content}>
           <div className={classes.toolbar}>
