@@ -2,17 +2,17 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import {
-  Paper, Grid, Divider, Button,
-  FormControl, OutlinedInput, InputAdornment, IconButton,
+  Paper, Grid, Divider,
 } from '@material-ui/core';
 import styled from 'styled-components/macro';
 import Highcharts from 'highcharts/highstock';
 import HighchartsReact from 'highcharts-react-official';
-import { Search } from '@material-ui/icons';
-import settings from '../../assets/icons/Settings.svg';
-import cancelFilter from '../../assets/icons/FilterCancel.svg';
-import filter from '../../assets/icons/Filter.svg';
-import expand from '../../assets/icons/Expand.svg';
+import CustomerProfile from './CustomerProfile';
+// import { Search } from '@material-ui/icons';
+// import settings from '../../assets/icons/Settings.svg';
+// import cancelFilter from '../../assets/icons/FilterCancel.svg';
+// import filter from '../../assets/icons/Filter.svg';
+// import expand from '../../assets/icons/Expand.svg';
 import BreadcrumbCustom from '../../components/BreadcrumbCustom';
 import DateRangePicker from '../../components/DateRangePicker';
 // import getNews from '../../actions';
@@ -303,56 +303,7 @@ function ManageCustomer() {
           </Paper>
         </Grid>
       </Grid>
-      <Paper className={classes.customerPaper} elevation={3}>
-        <ActionContainer>
-          <Button
-            className={classes.button}
-            startIcon={<img src={settings} alt="settings" />}
-          >
-            Search & filter index
-          </Button>
-          <Button
-            className={classes.button}
-            startIcon={<img src={cancelFilter} alt="cancel filter" />}
-          >
-            Cancel filter
-          </Button>
-          <Button
-            className={classes.button}
-            startIcon={<img src={filter} alt="filter" />}
-          >
-            Filter
-          </Button>
-          <Button
-            className={classes.button}
-            startIcon={<img src={expand} alt="expand" />}
-          >
-            Expand
-          </Button>
-          <FormControl className={classes.inputSearch} variant="outlined">
-            <OutlinedInput
-              id="outlined-adornment-password"
-              type="text"
-              placeholder="Search Customer..."
-              margin="dense"
-              // value={values.password}
-              // onChange={handleChange('password')}
-              endAdornment={(
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    // onClick={handleClickShowPassword}
-                    edge="end"
-                  >
-                    <Search />
-                  </IconButton>
-                </InputAdornment>
-              )}
-            />
-          </FormControl>
-        </ActionContainer>
-        <Divider className={classes.marginDivider} />
-      </Paper>
+      <CustomerProfile />
     </Container>
   );
 }
@@ -468,6 +419,6 @@ const ArrowValue = styled.span`
 const StatusValue = styled.div`
 `;
 
-const ActionContainer = styled.div`
+// const ActionContainer = styled.div`
 
-`;
+// `;
