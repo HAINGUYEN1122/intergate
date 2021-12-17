@@ -89,7 +89,7 @@ export default function MenuSidebarList({ location, openDrawer }) {
         {
           key: 'behavior',
           name: 'Tracking behavior',
-          path: '/dashboard',
+          path: '/dashboard/trackingbehavior',
         },
         {
           key: 'report',

@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 import Divider from '@material-ui/core/Divider';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import toCurrency from '../utils/FormatNumber';
 
 function StatisticsCard(props) {
   const {
-    title, value, rate, type,
+    title, value, rate, type, total,
   } = props;
 
   return (
@@ -26,7 +27,9 @@ function StatisticsCard(props) {
         }
       </Value>
       <Rate>
-        <ArrowDropUpIcon />
+        <Icon>
+          {total === 'increase' ? <ArrowDropUpIcon style={{ color: '#4CFA9D' }} /> : <ArrowDropDownIcon style={{ color: '#ED455C' }} />}
+        </Icon>
         <span>{`${rate}% so với tháng trước`}</span>
       </Rate>
     </Container>
@@ -42,6 +45,7 @@ StatisticsCard.propTypes = {
   value: PropTypes.number.isRequired,
   rate: PropTypes.number.isRequired,
   type: PropTypes.string,
+  total: PropTypes.string.isRequired,
 };
 
 export default StatisticsCard;
@@ -75,4 +79,7 @@ const VndType = styled.span`
   font-weight: 400;
   position: absolute;
   transform: scale(1) translate(10%, -30%);
+`;
+const Icon = styled.span`
+
 `;
