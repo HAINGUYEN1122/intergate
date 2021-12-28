@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   subtext: {
     color: '#B0B6C6',
     '& .MuiTypography-body1': {
-      fontFamily: 'Titillium Web',
+      // fontFamily: 'Titillium Web',
       fontSize: 16,
       fontStyle: 'normal',
     },
@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
   text: {
     margin: theme.spacing(1),
     '& .MuiTypography-body1': {
-      fontFamily: 'Titillium Web',
+      // fontFamily: 'Titillium Web',
       fontSize: 16,
       fontStyle: 'normal',
     },
