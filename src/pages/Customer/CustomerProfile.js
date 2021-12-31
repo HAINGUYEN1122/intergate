@@ -3,55 +3,125 @@
 /* eslint-disable eqeqeq */
 /* eslint-disable max-len */
 /* eslint-disable import/no-duplicates */
+import React, { useState } from 'react';
 import styled from 'styled-components/macro';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import CheckBoxIcon from '@material-ui/icons/CheckBox';
+import clsx from 'clsx';
+// import ListItemText from '@material-ui/core/ListItemText';
 // import Box from '@material-ui/core/Box';
 // import SettingsOutlinedIcon from '@material-ui/icons/SettingsOutlined';
 // import Carousel from 'react-material-ui-carousel';
 // import Carousel from 'react-elastic-carousel';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Drawer from '@material-ui/core/Drawer';
+// import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/Search';
 // import CardContent from '@material-ui/core/CardContent';
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
-import { makeStyles } from '@material-ui/core';
-// import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-// import Link from '@material-ui/core/Link';
+import { createTheme, ThemeProvider, makeStyles } from '@material-ui/core/styles';
+import { Divider, ListItemText } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
-import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
+import Pagination from '@material-ui/lab/Pagination';
 import settings from '../../assets/icons/Settings.svg';
 import cancelFilter from '../../assets/icons/FilterCancel.svg';
 import filter from '../../assets/icons/Filter.svg';
 import expand from '../../assets/icons/Expand.svg';
-import avatar1 from '../../assets/images/avacustomer1.png';
-import avatar2 from '../../assets/images/avacustomer2.png';
-import avatar3 from '../../assets/images/avacustomer3.png';
-// import OutlinedInput from '@material-ui/core/OutlinedInput';
-// import InputAdornment from '@material-ui/core/InputAdornment';
-// import SearchIcon from '@material-ui/icons/Search';
+import Data from './CHI PHUONG.json';
+import { useCheckbox } from '../../hooks/input.hooks';
 
+const drawerWidth = 400;
+const drawerHeight = 'auto';
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
-    height: 480,
+    height: 500,
     background: '#FFFFFFCC',
+    padding: theme.spacing(2),
     borderRadius: 20,
     '& .MuiCard-root': {
       ShadowRoot: 2,
     },
   },
+  appBar: {
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+  },
+  appBarShift: {
+    width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+    marginRight: drawerWidth,
+  },
+  List: {
+    paddingLeft: theme.spacing(3),
+  },
+  ListItemText: {
+    fontfamily: 'Roboto',
+    fontSize: 13,
+    fontWeight: 700,
+    textTransform: 'uppercase',
+    color: '#22215B',
+    marginLeft: theme.spacing(1),
+  },
+  drawer: {
+    // overflowY: 'hidden',
+    position: 'relative',
+    marginLeft: 'auto',
+    width: drawerWidth,
+    '& .MuiBackdrop-root': {
+      display: 'none',
+    },
+    '& .MuiDrawer-paper': {
+      width: drawerWidth,
+      borderRadius: 20,
+      height: drawerHeight,
+      position: 'absolute',
+      padding: theme.spacing(2),
+      transition: 'none !important',
+    },
+  },
+  drawerOpen: {
+    width: drawerWidth,
+    transition: theme.transitions.create('width', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  },
+  drawerClose: {
+    transition: theme.transitions.create('width', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    overflowX: 'hidden',
+    width: theme.spacing(7) + 1,
+    [theme.breakpoints.up('sm')]: {
+      width: theme.spacing(8) + 1,
+    },
+  },
+  searchdrawer: {
+    width: 350,
+    height: 32,
+    paddingRight: theme.spacing(0),
+    margin: theme.spacing(2, 0, 2, 0),
+    color: '#94A4B7',
+  },
   cardcontent: {
-    width: 351,
-    padding: theme.spacing(2, 2, 0, 2),
+    padding: theme.spacing(2),
   },
   titlecard: {
     fontfamily: 'Inter',
     fontSize: 24,
     fontWeight: 700,
-    padding: theme.spacing(1, 7, 1, 7),
+    margin: theme.spacing(2),
   },
   boxsize: {
     width: 1186,
@@ -67,7 +137,6 @@ const useStyles = makeStyles((theme) => ({
   search: {
     width: 350,
     height: 32,
-    margin: theme.spacing(2),
     paddingRight: theme.spacing(0),
     color: '#94A4B7',
   },
@@ -80,8 +149,9 @@ const useStyles = makeStyles((theme) => ({
   },
   cardlist: {
     width: 380,
-    height: 333,
+    height: 340,
     borderRadius: 20,
+    margin: theme.spacing(2, 3, 2, 2),
   },
   name: {
     fontfamily: 'Roboto',
@@ -166,148 +236,169 @@ const useStyles = makeStyles((theme) => ({
     textTransform: 'capitalize',
     padding: theme.spacing(1, 0),
   },
+  scrollContent: {
+    height: 290,
+    overflowY: 'auto',
+  },
+  datascroll: {
+    height: 400,
+    overflowY: 'auto',
+  },
 }));
 const theme = createTheme();
-const data = [
-  {
-    id: 1,
-    avatar: <img src={avatar1} alt="avatar" />,
-    status: 'Active',
-    rank: 'gold',
-    phone: '+84 936942807',
-    address: '200 Nguyen Thai Hoc, Quy Nhon',
-    location: 'Binh Dinh, Vietnam',
-    name: 'Lannister',
-    empolyer: 'RAD Designs',
-    email: 'example@email.com',
-    age: '22',
-    sex: '#female',
-  },
-  {
-    id: 2,
-    avatar: <img src={avatar2} alt="avatar" />,
-    status: 'Active',
-    rank: 'sliver',
-    phone: '+84 936942807',
-    address: '200 Nguyen Thai Hoc, Quy Nhon',
-    location: 'Binh Dinh, Vietnam',
-    name: 'Lannister',
-    empolyer: 'RAD Designs',
-    email: 'example@email.com',
-    age: '22',
-    sex: '#female',
-  },
-  {
-    id: 3,
-    avatar: <img src={avatar3} alt="avatar" />,
-    status: 'Active',
-    rank: 'diamond',
-    phone: '+84 936942807',
-    address: '200 Nguyen Thai Hoc, Quy Nhon',
-    location: 'Binh Dinh, Vietnam',
-    name: 'Lannister',
-    empolyer: 'RAD Designs',
-    email: 'example@email.com',
-    age: '22',
-    sex: '#female',
-  },
-];
-// const anArrayOfNumbers = [
-//   <img src="http://random.com/one" />,
-//   <img src="http://random.com/two" />,
-//   <img src="http://random.com/three" />,
-// ];
-// const breakPoints = [
-//   { width: 1, itemsToShow: 1 },
-//   { width: 550, itemsToShow: 2 },
-//   { width: 768, itemsToShow: 3 },
-//   { width: 1200, itemsToShow: 4 },
-// ];
 export default function CustomerProfile() {
+  const [open, setOpen] = useState(false);
+
   const classes = useStyles();
+  const { value: checked, onChange: onChangeChecked } = useCheckbox();
+  const handleFilterIconClick = () => {
+    setOpen(!open);
+  };
   return (
     <Container>
       <ThemeProvider theme={theme}>
-        <Grid
-          container
-          direction="column"
-          justifyContent="flex-start"
-          alignItems="flex-start"
-        >
-          <Card className={classes.root}>
+        <Grid container>
+          <Card
+            position="fixed"
+            className={classes.root}
+          >
             <Grid
               container
-              direction="column"
-              justifyContent="center"
-              alignItems="center"
+            >
+              <Grid item lg={8}>
+                <Button
+                  startIcon={<img src={settings} alt="Setting" />}
+                  className={classes.filter}
+                >
+                  Search & filter index
+                </Button>
+                <Button
+                  startIcon={<img src={cancelFilter} alt="CancleFilter" />}
+                  className={classes.filter}
+                >
+                  Cancel filter
+                </Button>
+                <Button
+                  startIcon={<img src={filter} alt="Filter" />}
+                  className={classes.filter}
+                  onClick={handleFilterIconClick}
+                >
+                  Filter
+                </Button>
+                <Button
+                  startIcon={<img src={expand} alt="CancleFilter" />}
+                  className={classes.filter}
+                >
+                  Expand
+                </Button>
+              </Grid>
+              <Grid item lg={4}>
+                <OutlinedInput
+                  disableUnderline
+                  className={classes.search}
+                  id="adornment-weight"
+                  placeholder="Search..."
+                  inputProps={{ 'aria-label': 'search' }}
+                  endAdornment={<InputAdornment sposition="end"><SearchIcon /></InputAdornment>}
+                />
+              </Grid>
+            </Grid>
+            <Divider />
+            <Drawer
+              open={open}
+              className={clsx(classes.drawer, {
+                [classes.drawerOpen]: open,
+                [classes.drawerClose]: !open,
+              })}
+              classes={{
+                paper: clsx({
+                  [classes.drawerOpen]: open,
+                  [classes.drawerClose]: !open,
+                }),
+              }}
+              variant="persistent"
+              anchor="right"
+            >
+              <Typography className={classes.name}>
+                Customer
+              </Typography>
+              <OutlinedInput
+                disableUnderline
+                className={classes.searchdrawer}
+                id="adornment-weight"
+                placeholder="Search..."
+                inputProps={{ 'aria-label': 'search' }}
+                endAdornment={<InputAdornment sposition="end"><SearchIcon /></InputAdornment>}
+              />
+              <Divider />
+              <div className={classes.scrollContent}>
+                <List className={classes.List}>
+                  <ListItemText>Country</ListItemText>
+                  {
+                Data.map((data) => (
+                  <ListItem>
+                    <Grid container>
+                      <Grid item lg={1}>
+                        <CheckBoxIcon
+                          checked={checked}
+                          onChange={onChangeChecked}
+                          value={data.customer_sources.Country}
+                          color="primary"
+                        />
+                      </Grid>
+                      <Grid item lg={11} alignItems="center">
+                        <Typography className={classes.ListItemText}>{data.customer_sources.Country}</Typography>
+                      </Grid>
+                    </Grid>
+                  </ListItem>
+                ))
+                }
+                </List>
+                <List className={classes.List}>
+                  <ListItemText>Location</ListItemText>
+                  {
+                Data.map((data) => (
+                  <ListItem>
+                    <Grid container>
+                      <Grid item lg={1}>
+                        <CheckBoxIcon
+                          checked={checked}
+                          onChange={onChangeChecked}
+                          value={data.customer_sources.Country}
+                          color="primary"
+                        />
+                      </Grid>
+                      <Grid item lg={11} alignItems="center">
+                        <Typography className={classes.ListItemText}>{data.customer_sources.City}</Typography>
+                      </Grid>
+                    </Grid>
+                  </ListItem>
+                ))
+                }
+                </List>
+              </div>
+            </Drawer>
+            <Grid container justifyContent="space-between" alignItems="center" className={clsx(classes.appBar, { [classes.appBarShift]: open })}>
+              <Typography className={classes.titlecard}>
+                Customer
+              </Typography>
+              <Pagination count={10} shape="rounded" />
+            </Grid>
+            <Grid
+              container
+              className={clsx(classes.appBar, {
+                [classes.appBarShift]: open,
+              })}
             >
               <Grid
                 container
                 direction="row"
-                justifyContent="space-between"
-                alignItems="center"
-              >
-                <Grid
-                  direction="row"
-                  justifyContent="flex-start"
-                  alignItems="center"
-                >
-                  <Button size="small"><ExpandMoreIcon /></Button>
-                  <Button
-                    startIcon={<img src={settings} alt="Setting" />}
-                    className={classes.filter}
-                  >
-                    Search & filter index
-                  </Button>
-                  <Button
-                    startIcon={<img src={cancelFilter} alt="CancleFilter" />}
-                    className={classes.filter}
-                  >
-                    Cancel filter
-                  </Button>
-                  <Button
-                    startIcon={<img src={filter} alt="Filter" />}
-                    className={classes.filter}
-                  >
-                    Filter
-                  </Button>
-                  <Button
-                    startIcon={<img src={expand} alt="CancleFilter" />}
-                    className={classes.filter}
-                  >
-                    Expand
-                  </Button>
-                </Grid>
-                <Grid>
-                  <OutlinedInput
-                    disableUnderline
-                    className={classes.search}
-                    id="adornment-weight"
-                    placeholder="Search..."
-                    inputProps={{ 'aria-label': 'search' }}
-                    endAdornment={<InputAdornment sposition="end"><SearchIcon /></InputAdornment>}
-                  />
-                </Grid>
-              </Grid>
-              <Box className={classes.boxsize} borderBottom={1} borderColor="grey.500" />
-              <Grid
-                container
                 justifyContent="flex-start"
-              >
-                <Typography
-                  className={classes.titlecard}
-                >
-                  Customer
-                </Typography>
-              </Grid>
-              <Grid
-                container
-                direction="row"
-                justifyContent="space-evenly"
-                alignItems="flex-start"
+                alignItems="center"
+                className={classes.datascroll}
               >
                 {
-                data.map((menuItem) => (
+                Data.map((menuItem) => (
                   <Card className={classes.cardlist}>
                     <Grid
                       container
@@ -330,20 +421,20 @@ export default function CustomerProfile() {
                             CONTACT
                           </Typography>
                           <Typography className={classes.name}>
-                            {menuItem.name}
+                            {menuItem.customer_sources.Name}
                           </Typography>
                         </Grid>
-                        <Button className={menuItem.rank == 'gold' ? classes.rank : menuItem.rank == 'sliver' ? classes.sliver : classes.diamond}>
-                          {menuItem.rank}
+                        <Button className={menuItem.rank == 'LOYAL' ? classes.rank : menuItem.rank == 'sliver' ? classes.sliver : classes.diamond}>
+                          {menuItem.customer_sources.Club_Code}
                         </Button>
                         <Button className={classes.status}>
                           {menuItem.status}
                         </Button>
                         <Typography className={classes.sex}>
-                          {menuItem.sex}
+                          {menuItem.customer_sources.Gender}
                         </Typography>
                       </Grid>
-                      <Box className={classes.line} borderBottom={1} borderColor="grey.500" />
+                      <Divider />
                       <Grid
                         container
                         className={classes.cardcontent}
@@ -354,7 +445,7 @@ export default function CustomerProfile() {
                               PHONE
                             </Typography>
                             <Typography className={classes.cardtext}>
-                              {menuItem.phone}
+                              {menuItem.customer_sources.telephone}
                             </Typography>
                           </Grid>
                           <Grid direction="column">
@@ -362,7 +453,7 @@ export default function CustomerProfile() {
                               ADDRESS
                             </Typography>
                             <Typography className={classes.cardtext}>
-                              {menuItem.address}
+                              {menuItem.customer_sources.Address}
                             </Typography>
                           </Grid>
                           <Grid direction="column">
@@ -370,7 +461,8 @@ export default function CustomerProfile() {
                               LOCATION
                             </Typography>
                             <Typography className={classes.cardtext1}>
-                              {menuItem.location}
+                              {menuItem.customer_address.City}
+                              {menuItem.customer_address.Country}
                             </Typography>
                           </Grid>
                         </Grid>
@@ -380,7 +472,7 @@ export default function CustomerProfile() {
                               EMAIL
                             </Typography>
                             <Typography className={classes.cardtext}>
-                              {menuItem.email}
+                              {menuItem.customer_sources.email}
                             </Typography>
                           </Grid>
                           <Grid direction="column">
@@ -388,7 +480,7 @@ export default function CustomerProfile() {
                               AGE
                             </Typography>
                             <Typography className={classes.cardtext}>
-                              {menuItem.age}
+                              {menuItem.customer_sources.Date_of_Birth}
                             </Typography>
                           </Grid>
                           <Grid direction="column">
@@ -407,7 +499,6 @@ export default function CustomerProfile() {
                 ))
           }
               </Grid>
-
             </Grid>
           </Card>
         </Grid>
@@ -419,11 +510,3 @@ export default function CustomerProfile() {
 const Container = styled.div`
   margin-top: 70px;
 `;
-
-// const Title = styled.h1`
-// `;
-
-// const RightContent = styled.div`
-//   display: inherit;
-//   align-items: center;
-// `;
