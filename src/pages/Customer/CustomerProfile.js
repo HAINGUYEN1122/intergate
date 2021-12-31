@@ -22,11 +22,12 @@ import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/Search';
 // import CardContent from '@material-ui/core/CardContent';
-import { createTheme, ThemeProvider, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core';
 import { Divider, ListItemText } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
 import Pagination from '@material-ui/lab/Pagination';
+import defaultAVT from '../../assets/icons/avatar-default-icon.png';
 import settings from '../../assets/icons/Settings.svg';
 import cancelFilter from '../../assets/icons/FilterCancel.svg';
 import filter from '../../assets/icons/Filter.svg';
@@ -245,7 +246,6 @@ const useStyles = makeStyles((theme) => ({
     overflowY: 'auto',
   },
 }));
-const theme = createTheme();
 export default function CustomerProfile() {
   const [open, setOpen] = useState(false);
 
@@ -256,85 +256,83 @@ export default function CustomerProfile() {
   };
   return (
     <Container>
-      <ThemeProvider theme={theme}>
-        <Grid container>
-          <Card
-            position="fixed"
-            className={classes.root}
-          >
-            <Grid
-              container
+      <Card
+        position="fixed"
+        className={classes.root}
+      >
+        <Grid
+          container
+        >
+          <Grid item lg={8}>
+            <Button
+              startIcon={<img src={settings} alt="Setting" />}
+              className={classes.filter}
             >
-              <Grid item lg={8}>
-                <Button
-                  startIcon={<img src={settings} alt="Setting" />}
-                  className={classes.filter}
-                >
-                  Search & filter index
-                </Button>
-                <Button
-                  startIcon={<img src={cancelFilter} alt="CancleFilter" />}
-                  className={classes.filter}
-                >
-                  Cancel filter
-                </Button>
-                <Button
-                  startIcon={<img src={filter} alt="Filter" />}
-                  className={classes.filter}
-                  onClick={handleFilterIconClick}
-                >
-                  Filter
-                </Button>
-                <Button
-                  startIcon={<img src={expand} alt="CancleFilter" />}
-                  className={classes.filter}
-                >
-                  Expand
-                </Button>
-              </Grid>
-              <Grid item lg={4}>
-                <OutlinedInput
-                  disableUnderline
-                  className={classes.search}
-                  id="adornment-weight"
-                  placeholder="Search..."
-                  inputProps={{ 'aria-label': 'search' }}
-                  endAdornment={<InputAdornment sposition="end"><SearchIcon /></InputAdornment>}
-                />
-              </Grid>
-            </Grid>
-            <Divider />
-            <Drawer
-              open={open}
-              className={clsx(classes.drawer, {
-                [classes.drawerOpen]: open,
-                [classes.drawerClose]: !open,
-              })}
-              classes={{
-                paper: clsx({
-                  [classes.drawerOpen]: open,
-                  [classes.drawerClose]: !open,
-                }),
-              }}
-              variant="persistent"
-              anchor="right"
+              Search & filter index
+            </Button>
+            <Button
+              startIcon={<img src={cancelFilter} alt="CancleFilter" />}
+              className={classes.filter}
             >
-              <Typography className={classes.name}>
-                Customer
-              </Typography>
-              <OutlinedInput
-                disableUnderline
-                className={classes.searchdrawer}
-                id="adornment-weight"
-                placeholder="Search..."
-                inputProps={{ 'aria-label': 'search' }}
-                endAdornment={<InputAdornment sposition="end"><SearchIcon /></InputAdornment>}
-              />
-              <Divider />
-              <div className={classes.scrollContent}>
-                <List className={classes.List}>
-                  <ListItemText>Country</ListItemText>
-                  {
+              Cancel filter
+            </Button>
+            <Button
+              startIcon={<img src={filter} alt="Filter" />}
+              className={classes.filter}
+              onClick={handleFilterIconClick}
+            >
+              Filter
+            </Button>
+            <Button
+              startIcon={<img src={expand} alt="CancleFilter" />}
+              className={classes.filter}
+            >
+              Expand
+            </Button>
+          </Grid>
+          <Grid item lg={4}>
+            <OutlinedInput
+              disableUnderline
+              className={classes.search}
+              id="adornment-weight"
+              placeholder="Search..."
+              inputProps={{ 'aria-label': 'search' }}
+              endAdornment={<InputAdornment sposition="end"><SearchIcon /></InputAdornment>}
+            />
+          </Grid>
+        </Grid>
+        <Divider />
+        <Drawer
+          open={open}
+          className={clsx(classes.drawer, {
+            [classes.drawerOpen]: open,
+            [classes.drawerClose]: !open,
+          })}
+          classes={{
+            paper: clsx({
+              [classes.drawerOpen]: open,
+              [classes.drawerClose]: !open,
+            }),
+          }}
+          variant="persistent"
+          anchor="right"
+        >
+          <Typography className={classes.name}>
+            Customer
+          </Typography>
+          <OutlinedInput
+            disableUnderline
+            className={classes.searchdrawer}
+            id="adornment-weight"
+            placeholder="Search..."
+            inputProps={{ 'aria-label': 'search' }}
+            endAdornment={<InputAdornment sposition="end"><SearchIcon /></InputAdornment>}
+          />
+          <Divider />
+          <div className={classes.scrollContent}>
+            <List className={classes.List}>
+              <ListItemText>Country</ListItemText>
+              {
                 Data.map((data) => (
                   <ListItem>
                     <Grid container>
@@ -353,10 +351,10 @@ export default function CustomerProfile() {
                   </ListItem>
                 ))
                 }
-                </List>
-                <List className={classes.List}>
-                  <ListItemText>Location</ListItemText>
-                  {
+            </List>
+            <List className={classes.List}>
+              <ListItemText>Location</ListItemText>
+              {
                 Data.map((data) => (
                   <ListItem>
                     <Grid container>
@@ -375,29 +373,29 @@ export default function CustomerProfile() {
                   </ListItem>
                 ))
                 }
-                </List>
-              </div>
-            </Drawer>
-            <Grid container justifyContent="space-between" alignItems="center" className={clsx(classes.appBar, { [classes.appBarShift]: open })}>
-              <Typography className={classes.titlecard}>
-                Customer
-              </Typography>
-              <Pagination count={10} shape="rounded" />
-            </Grid>
-            <Grid
-              container
-              className={clsx(classes.appBar, {
-                [classes.appBarShift]: open,
-              })}
-            >
-              <Grid
-                container
-                direction="row"
-                justifyContent="flex-start"
-                alignItems="center"
-                className={classes.datascroll}
-              >
-                {
+            </List>
+          </div>
+        </Drawer>
+        <Grid container justifyContent="space-between" alignItems="center" className={clsx(classes.appBar, { [classes.appBarShift]: open })}>
+          <Typography className={classes.titlecard}>
+            Customer
+          </Typography>
+          <Pagination count={10} shape="rounded" />
+        </Grid>
+        <Grid
+          container
+          className={clsx(classes.appBar, {
+            [classes.appBarShift]: open,
+          })}
+        >
+          <Grid
+            container
+            direction="row"
+            justifyContent="flex-start"
+            alignItems="center"
+            className={classes.datascroll}
+          >
+            {
                 Data.map((menuItem) => (
                   <Card className={classes.cardlist}>
                     <Grid
@@ -413,7 +411,7 @@ export default function CustomerProfile() {
                         alignItems="flex-end"
                         className={classes.headercard}
                       >
-                        {menuItem.avatar}
+                        {menuItem.avt == '' || 'undefine' ? <img src={defaultAVT} alt="defaultAVT" /> : menuItem.avt }
                         <Grid
                           direction="column"
                         >
@@ -498,11 +496,9 @@ export default function CustomerProfile() {
                   </Card>
                 ))
           }
-              </Grid>
-            </Grid>
-          </Card>
+          </Grid>
         </Grid>
-      </ThemeProvider>
+      </Card>
     </Container>
   );
 }
