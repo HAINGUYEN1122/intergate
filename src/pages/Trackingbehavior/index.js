@@ -1,5 +1,6 @@
+/* eslint-disable no-shadow */
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Paper, Grid, Divider,
@@ -9,7 +10,12 @@ import Highcharts from 'highcharts/highstock';
 import HighchartsReact from 'highcharts-react-official';
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import BreadcrumbCustom from '../../components/BreadcrumbCustom';
-
+import TopVisitedProducts from './TopVisitedProducts';
+import TopVisitedCategory from './TopVisitedCategory';
+import TopTrending from './TopTrending';
+import TopSearch from './TopSearch';
+import EventStatisticsChart from './EventStatisticsChart';
+import OnlineCustomeChart from './OnlineCustomeChart';
 // import CustomerProfile from './CustomerProfile';
 // import { Search } from '@material-ui/icons';
 // import settings from '../../assets/icons/Settings.svg';
@@ -40,8 +46,8 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
     textAlign: 'center',
   },
-  titleContainer: {
-    margin: theme.spacing(1, 0, 4, 0),
+  RightContent: {
+    margin: theme.spacing(2, 0, 2, 0),
   },
   customerPaper: {
     padding: theme.spacing(2),
@@ -92,13 +98,15 @@ const useStyles = makeStyles((theme) => ({
     width: 15,
     color: '#FF6C40',
   },
+  sencondcontent: {
+    marginTop: theme.spacing(4),
+  },
 }));
 
 function Trackingbehavior() {
   const classes = useStyles();
   // const dispatch = useDispatch();
-  const data = useSelector((state) => state.news);
-
+  // const data = useSelector((state) => state.news);
   useEffect(() => {
     // dispatch(getNews());
     // setTimeout(() => {
@@ -220,15 +228,15 @@ function Trackingbehavior() {
         color: '#2D99FF',
       }, {
         name: 'Replay',
-        y: 5000,
+        y: 1500,
         color: '#FFE700',
       }, {
         name: 'Superga',
-        y: 0,
+        y: 1500,
         color: '#2CD9C5',
       }, {
         name: 'Staple',
-        y: 0,
+        y: 2000,
         color: '#FF6C40',
       }],
       size: '100%',
@@ -250,7 +258,6 @@ function Trackingbehavior() {
     ],
     active: 'Manage Customer',
   };
-  console.log(data);
   return (
     <Container>
       <BreadcrumbCustom breadcrumbsList={breadcrumbsList} />
@@ -259,12 +266,11 @@ function Trackingbehavior() {
         direction="row"
         justifyContent="space-between"
         alignItems="center"
-        className={classes.titleContainer}
       >
-        <Title>Customer behaviors</Title>
-        <RightContent>
-          <DateRangePicker />
+        <RightContent className={classes.RightContent}>
+          <Title>Trackingbehavior</Title>
         </RightContent>
+        <DateRangePicker />
       </Grid>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6} lg={3}>
@@ -290,40 +296,14 @@ function Trackingbehavior() {
       </Grid>
       <Grid container spacing={3}>
         <Grid item lg={4}>
-          <Paper className={classes.paper} elevation={3}>
-            <TitleChart>Ordered/ Cancel - Pending (add to cart)</TitleChart>
-            <Divider />
-            <Grid container spacing={3} justifyContent="center" alignItems="flex-start">
-              <Grid item>
-                <HighchartsReact
-                  highcharts={Highcharts}
-                  options={optionsDonutChart}
-                />
-              </Grid>
-              <Grid container justifyContent="space-evenly" alignItems="center">
-                <StatusValue>
-                  <FiberManualRecordIcon className={classes.dotComplete} />
-                  <StatusText>Completed Successfully</StatusText>
-                  <ArrowContent>
-                    <ArrowUp />
-                    <ArrowValue>12% over last month</ArrowValue>
-                  </ArrowContent>
-                </StatusValue>
-                <StatusValue>
-                  <FiberManualRecordIcon className={classes.dotCancle} />
-                  <StatusText>Cancel/Pending</StatusText>
-                  <ArrowContent>
-                    <ArrowUp />
-                    <ArrowValue>(12% over last month)</ArrowValue>
-                  </ArrowContent>
-                </StatusValue>
-              </Grid>
-            </Grid>
-          </Paper>
+          <TopVisitedProducts />
+        </Grid>
+        <Grid item lg={4}>
+          <TopVisitedCategory />
         </Grid>
         <Grid item lg={4}>
           <Paper className={classes.paper} elevation={3}>
-            <TitleChart>Top 5 number of visited by brand</TitleChart>
+            <TitleChart>Top 5 number of visitor by brand</TitleChart>
             <Divider />
             <Grid container spacing={3} display="collumn">
               <Grid item lg={7}>
@@ -373,10 +353,91 @@ function Trackingbehavior() {
                     <ArrowValue>(12% over last month)</ArrowValue>
                   </ArrowContent>
                 </StatusValue>
-
               </Grid>
             </Grid>
           </Paper>
+        </Grid>
+      </Grid>
+      <Grid container spacing={3}>
+        <Grid item lg={4}>
+          <EventStatisticsChart />
+        </Grid>
+        <Grid item lg={4}>
+          <OnlineCustomeChart />
+        </Grid>
+        <Grid item lg={4}>
+          <Paper className={classes.paper} elevation={3}>
+            <TitleChart>Ordered/ Cancel - Pending (add to cart)</TitleChart>
+            <Divider />
+            <Grid container spacing={3} justifyContent="center" alignItems="flex-start">
+              <Grid item>
+                <HighchartsReact
+                  highcharts={Highcharts}
+                  options={optionsDonutChart}
+                />
+              </Grid>
+              <Grid container justifyContent="space-evenly" alignItems="center">
+                <StatusValue>
+                  <FiberManualRecordIcon className={classes.dotComplete} />
+                  <StatusText>Completed Successfully</StatusText>
+                  <ArrowContent>
+                    <ArrowUp />
+                    <ArrowValue>12% over last month</ArrowValue>
+                  </ArrowContent>
+                </StatusValue>
+                <StatusValue>
+                  <FiberManualRecordIcon className={classes.dotCancle} />
+                  <StatusText>Cancel/Pending</StatusText>
+                  <ArrowContent>
+                    <ArrowUp />
+                    <ArrowValue>(12% over last month)</ArrowValue>
+                  </ArrowContent>
+                </StatusValue>
+              </Grid>
+            </Grid>
+          </Paper>
+        </Grid>
+      </Grid>
+      <Grid
+        container
+        direction="row"
+        justifyContent="space-between"
+        alignItems="center"
+        className={classes.sencondcontent}
+      >
+        <RightContent className={classes.RightContent}>
+          <Title>Search Engine and Customer Services</Title>
+        </RightContent>
+        <DateRangePicker />
+      </Grid>
+      <Grid container spacing={3}>
+        <Grid item xs={12} sm={6} lg={3}>
+          <Paper className={classes.headpaper} elevation={3}>
+            <StatisticsCard title="Purchased click" value={73} rate={12} type="percent" total="increase" />
+          </Paper>
+        </Grid>
+        <Grid item xs={12} sm={6} lg={3}>
+          <Paper className={classes.headpaper} elevation={3}>
+            <StatisticsCard title="Cancel rate" value={27} rate={12} type="percent" total="increase" />
+          </Paper>
+        </Grid>
+        <Grid item xs={12} sm={6} lg={3}>
+          <Paper className={classes.headpaper} elevation={3}>
+            <StatisticsCard title="Total visited on site" value={15475} rate={12} total="increase" />
+          </Paper>
+        </Grid>
+        <Grid item xs={12} sm={6} lg={3}>
+          <Paper className={classes.headpaper} elevation={3}>
+            <StatisticsCard title="Total time on site" value={566} rate={12} total="decrease" />
+          </Paper>
+        </Grid>
+      </Grid>
+      <Grid container spacing={3}>
+        <Grid item xs={12} sm={6} lg={4}>
+          <TopTrending />
+        </Grid>
+        <Grid item xs={12} sm={6} lg={4}>
+          <TopSearch />
         </Grid>
       </Grid>
     </Container>
@@ -388,10 +449,9 @@ export default Trackingbehavior;
 const Container = styled.div`
   margin-top: 70px;
 `;
-
 const Title = styled.h1`
+  margin-bottom: 0;
 `;
-
 const RightContent = styled.div`
   display: inherit;
   align-items: center;
