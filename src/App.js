@@ -15,6 +15,7 @@ import PrivateRoute from './Route/PrivateRoute';
 import PageNotFound from './pages/PageNotFound';
 import Sconnection from './pages/Sconnection';
 import Forgotpassword from './pages/Forgotpassword';
+import ManagedCustomer from './pages/Customer/ManagedCustomer';
 import Jsconnection from './pages/Jsconnection';
 import Allusers from './pages/Allusers';
 import signup from './pages/Signup';
@@ -37,7 +38,9 @@ function App() {
               <Content>
                 <Switch>
                   <PrivateRoute exact path="/dashboard" component={DashBoard} />
+                  <PrivateRoute exact path="/customer/manage" component={ManagedCustomer} />
                   <PrivateRoute exact path="/" topath="/dashboard" />
+                  <PrivateRoute exact path="/customer" topath="/customer/manage" />
                   <PrivateRoute exact path="/sconnection" component={Sconnection} />
                   <PrivateRoute exact path="/jsconnection" component={Jsconnection} />
                   <PrivateRoute exact path="/adddatasource" component={AddDataSource} />

@@ -49,5 +49,4 @@ const CalendarIcon = styled.div`
 const Content = styled.div`
   display: inherit;
   align-items: center;
-  padding-right: 20px;
 `;
