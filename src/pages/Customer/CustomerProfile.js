@@ -9,7 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import CheckBoxIcon from '@material-ui/icons/CheckBox';
+import Checkbox from '@material-ui/core/Checkbox';
 import clsx from 'clsx';
 // import ListItemText from '@material-ui/core/ListItemText';
 // import Box from '@material-ui/core/Box';
@@ -33,7 +33,7 @@ import cancelFilter from '../../assets/icons/FilterCancel.svg';
 import filter from '../../assets/icons/Filter.svg';
 import expand from '../../assets/icons/Expand.svg';
 import Data from './CHI PHUONG.json';
-import { useCheckbox } from '../../hooks/input.hooks';
+// import { useCheckbox } from '../../hooks/input.hooks';
 
 const drawerWidth = 400;
 const drawerHeight = 'auto';
@@ -250,7 +250,14 @@ export default function CustomerProfile() {
   const [open, setOpen] = useState(false);
 
   const classes = useStyles();
-  const { value: checked, onChange: onChangeChecked } = useCheckbox();
+  // const list = Data.customer_sources.Country;
+  const [state, setState] = React.useState([]);
+  const getValue = (a) => {
+    const data = state;
+    data.push(a.target.value);
+    setState(data);
+    console.log(state);
+  };
   const handleFilterIconClick = () => {
     setOpen(!open);
   };
@@ -335,19 +342,8 @@ export default function CustomerProfile() {
               {
                 Data.map((data) => (
                   <ListItem>
-                    <Grid container>
-                      <Grid item lg={1}>
-                        <CheckBoxIcon
-                          checked={checked}
-                          onChange={onChangeChecked}
-                          value={data.customer_sources.Country}
-                          color="primary"
-                        />
-                      </Grid>
-                      <Grid item lg={11} alignItems="center">
-                        <Typography className={classes.ListItemText}>{data.customer_sources.Country}</Typography>
-                      </Grid>
-                    </Grid>
+                    <Checkbox onChange={(a) => getValue(a)} color="primary" value={data.customer_sources.Country} />
+                    <Typography className={classes.ListItemText}>{data.customer_sources.Country}</Typography>
                   </ListItem>
                 ))
                 }
@@ -357,19 +353,8 @@ export default function CustomerProfile() {
               {
                 Data.map((data) => (
                   <ListItem>
-                    <Grid container>
-                      <Grid item lg={1}>
-                        <CheckBoxIcon
-                          checked={checked}
-                          onChange={onChangeChecked}
-                          value={data.customer_sources.Country}
-                          color="primary"
-                        />
-                      </Grid>
-                      <Grid item lg={11} alignItems="center">
-                        <Typography className={classes.ListItemText}>{data.customer_sources.City}</Typography>
-                      </Grid>
-                    </Grid>
+                    <Checkbox onChange={(a) => getValue(a)} color="primary" value={data.customer_sources.City} />
+                    <Typography className={classes.ListItemText}>{data.customer_sources.City}</Typography>
                   </ListItem>
                 ))
                 }
