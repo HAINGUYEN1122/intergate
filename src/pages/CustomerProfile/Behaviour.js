@@ -229,7 +229,7 @@ export default function Behaviour() {
     <Container>
       <Paper className={classes.root}>
         <Grid container direction="row" justifyContent="space-between" alignItems="center" className={classes.ChartContainer}>
-          <TitleCard> REACTION TO MAKETING CAMPAIGNS</TitleCard>
+          <TitleCard> CUSTOMER BEHAVIOUR</TitleCard>
           <RightContent>
             <DateRangePicker />
           </RightContent>

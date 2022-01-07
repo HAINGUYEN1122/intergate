@@ -10,53 +10,12 @@ import {
 } from '@material-ui/core';
 import React from 'react';
 import styled from 'styled-components/macro';
-// import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
-// import Input from '@material-ui/core/Input';
-// import InputAdornment from '@material-ui/core/InputAdornment';
-// import CreateIcon from '@material-ui/icons/Create';
-// import IconButton from '@material-ui/core/IconButton';
-// import InputLabel from '@material-ui/core/InputLabel';
-// import FormControl from '@material-ui/core/FormControl';
-// import Highcharts from 'highcharts/highstock';
-// import HighchartsReact from 'highcharts-react-official';
-// import OutlinedInput from '@material-ui/core/OutlinedInput';
-// import SearchIcon from '@material-ui/icons/Search';
-// import List from '@material-ui/core/List';
-// import ListItem from '@material-ui/core/ListItem';
-// import ~ from '@material-ui/icons/CheckBox';
-// import clsx from 'clsx';
-// import ListItemText from '@material-ui/core/ListItemText';
-// import Box from '@material-ui/core/Box';
-// import SettingsOutlinedIcon from '@material-ui/icons/SettingsOutlined';
-// import Carousel from 'react-material-ui-carousel';
-// import Carousel from 'react-elastic-carousel';
-// import Drawer from '@material-ui/core/Drawer';
-// import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-// import CustomerProfile from './CustomerProfile';
-// import { Search } from '@material-ui/icons';
-// import settings from '../../assets/icons/Settings.svg';
-// import cancelFilter from '../../assets/icons/FilterCancel.svg';
-// import filter from '../../assets/icons/Filter.svg';
-// import expand from '../../assets/icons/Expand.svg';
-// import BreadcrumbCustom from '../../components/BreadcrumbCustom';/
-// import OutlinedInput from '@material-ui/core/OutlinedInput';
-// import InputAdornment from '@material-ui/core/InputAdornment';
-// import SearchIcon from '@material-ui/icons/Search';
-// import CardContent from '@material-ui/core/CardContent';
-// import Link from '@material-ui/core/Link';
+// import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
-// import { Divider } from '@material-ui/core';
-// import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
-// import defaultAVT from '../../assets/icons/avatar-default-icon.png';
 import { DataGrid } from '@material-ui/data-grid';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import DateRangePicker from '../../components/DateRangePicker';
-// import BreadcrumbCustom from '../../components/BreadcrumbCustom';
-// import Data from './product.json';
-// import product from '../../assets/images/product.svg';
-// import { useCheckbox } from '../../hooks/input.hooks';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -218,7 +177,7 @@ export default function Product() {
           justifyContent="center"
           alignItems="center"
         >
-          {params.row.FIRST_GOAL == 'completed' ? <Button style={{ color: '#2DD183' }}><CheckCircleIcon /></Button> : <Button style={{ color: '#ED455C' }}><CheckCircleIcon /></Button> }
+          {params.row.FIRST_GOAL == 'completed' ? <CheckCircleIcon style={{ color: '#2DD183' }} /> : <CheckCircleIcon style={{ color: '#ED455C' }} /> }
 
         </Grid>
       ),
@@ -235,7 +194,7 @@ export default function Product() {
           justifyContent="center"
           alignItems="center"
         >
-          {params.row.FINAL_GOAL == 'completed' ? <Button style={{ color: '#2DD183' }}><CheckCircleIcon /></Button> : <Button style={{ color: '#ED455C' }}><CheckCircleIcon /></Button> }
+          {params.row.FINAL_GOAL == 'completed' ? <CheckCircleIcon style={{ color: '#2DD183' }} /> : <CheckCircleIcon style={{ color: '#ED455C' }} />}
         </Grid>
       ),
     },
@@ -251,7 +210,7 @@ export default function Product() {
           justifyContent="center"
           alignItems="center"
         >
-          {params.row.OPPOTURNITY == 'completed' ? <Button style={{ color: '#2DD183' }}><CheckCircleIcon /></Button> : <Button style={{ color: '#ED455C' }}><CheckCircleIcon /></Button> }
+          {params.row.OPPOTURNITY == 'completed' ? <CheckCircleIcon style={{ color: '#2DD183' }} /> : <CheckCircleIcon style={{ color: '#ED455C' }} /> }
         </Grid>
       ),
     },

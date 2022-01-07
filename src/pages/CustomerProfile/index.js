@@ -191,6 +191,9 @@ const useStyles = makeStyles((theme) => ({
   number: {
     color: '#2EBA6F',
   },
+  content: {
+    padding: theme.spacing(0, 6, 0, 6),
+  },
 }));
 // const theme = createTheme();
 
@@ -360,7 +363,7 @@ export default function CustomerProfile() {
                         {menuItem.customer_sources.Gender}
                       </Typography>
                     </Grid>
-                    <Grid container>
+                    <Grid container className={classes.content}>
                       <Grid item lg={5} xs={5}>
                         <Grid style={{ width: '80%', margin: 8 }}>
                           <Grid container justifyContent="space-between">
