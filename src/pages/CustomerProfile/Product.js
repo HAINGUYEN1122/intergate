@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   },
   Cardcontent: {
     width: '100%',
-    height: 190,
+    height: 'auto',
     background: ' #E7EAEC70',
     borderRadius: 20,
     padding: theme.spacing(2),
@@ -100,26 +100,30 @@ export default function Product() {
         <Paper className={classes.Cardcontent}>
           {
             Data.map((menuItem) => (
-              <Grid container justifyContent="center" alignItems="center">
-                <Grid item xs={1}>
+              <Grid container justifyContent="center" alignItems="center" spacing={3}>
+                <Grid item lg={1} xs={2}>
                   <Card className={classes.cardProduct}>
                     <img src={product} crt="product" />
                   </Card>
                 </Grid>
-                <Grid item xs={11}>
+                <Grid item lg={11} xs={10}>
                   <Grid container style={{ marginBottom: '20px' }}>
-                    <Grid xs={3}>
+                    <Grid lg={3} xs={6}>
                       <Grid container justifyContent="space-evenly" alignItems="center">
-                        <Typography className={classes.name}>
-                          {menuItem.Product.NAME}
-                        </Typography>
-                        <Typography className={classes.id}>
-                          {menuItem.Product.ID}
-                        </Typography>
+                        <Grid lg={8} xs={10}>
+                          <Typography className={classes.name}>
+                            {menuItem.Product.NAME}
+                          </Typography>
+                        </Grid>
+                        <Grid lg={4} xs={2}>
+                          <Typography className={classes.id}>
+                            {menuItem.Product.ID}
+                          </Typography>
+                        </Grid>
                       </Grid>
                       <Divider />
                     </Grid>
-                    <Grid xs={9}>
+                    <Grid lg={9} xs={6}>
                       <Grid container justifyContent="flex-end" alignItems="flex-en">
                         <Link href="#">
                           View report
@@ -128,7 +132,7 @@ export default function Product() {
                     </Grid>
                   </Grid>
                   <Grid container>
-                    <Grid item lg={2}>
+                    <Grid item lg={2} xs={2}>
                       <Grid style={{ marginBottom: '20px' }}>
                         <Typography className={classes.cardtitle}>
                           NAME
@@ -146,7 +150,7 @@ export default function Product() {
                         </Typography>
                       </Grid>
                     </Grid>
-                    <Grid item lg={2}>
+                    <Grid item lg={2} xs={2}>
                       <Grid style={{ marginBottom: '15px' }}>
                         <Typography className={classes.cardtitle}>
                           CATEGORIES
@@ -164,7 +168,7 @@ export default function Product() {
                         </Typography>
                       </Grid>
                     </Grid>
-                    <Grid item lg={2}>
+                    <Grid item lg={2} xs={2}>
                       <Grid style={{ marginBottom: '15px' }}>
                         <Typography className={classes.cardtitle}>
                           PRICE
@@ -182,7 +186,7 @@ export default function Product() {
                         </Typography>
                       </Grid>
                     </Grid>
-                    <Grid item lg={2}>
+                    <Grid item lg={2} xs={2}>
                       <Grid style={{ marginBottom: '15px' }}>
                         <Typography className={classes.cardtitle}>
                           TOTAL
@@ -200,7 +204,7 @@ export default function Product() {
                         </Typography>
                       </Grid>
                     </Grid>
-                    <Grid item lg={2}>
+                    <Grid item lg={2} xs={2}>
                       <Grid style={{ marginBottom: '15px' }}>
                         <Typography className={classes.cardtitle}>
                           STORE
@@ -218,7 +222,7 @@ export default function Product() {
                         </Typography>
                       </Grid>
                     </Grid>
-                    <Grid item lg={2}>
+                    <Grid item lg={2} xs={2}>
                       <Grid style={{ marginBottom: '15px' }}>
                         <Typography className={classes.cardtitle}>
                           TRANSACTION DATE

@@ -8,12 +8,13 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import Input from '@material-ui/core/Input';
+// import Input from '@material-ui/core/Input';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import CreateIcon from '@material-ui/icons/Create';
-import IconButton from '@material-ui/core/IconButton';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
+import clsx from 'clsx';
+import CreateIcon from '@material-ui/icons/CreateOutlined';
+// import IconButton from '@material-ui/core/IconButton';
+// import InputLabel from '@material-ui/core/InputLabel';
+// import FormControl from '@material-ui/core/FormControl';
 import Highcharts from 'highcharts/highstock';
 import HighchartsReact from 'highcharts-react-official';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
@@ -173,6 +174,23 @@ const useStyles = makeStyles((theme) => ({
     height: 45,
     borderadius: 6,
   },
+  titlecardcontent: {
+    fontSize: 16,
+    fontStyle: 'normal',
+    color: '#22215ba6',
+    margin: theme.spacing(1, 0, 1, 0),
+  },
+  titlecardicon: {
+    margin: theme.spacing(1, 0, 1, 0),
+    color: '#4B5D72',
+  },
+  email: {
+    color: '#4E8FF0',
+    textDecoration: 'underline',
+  },
+  number: {
+    color: '#2EBA6F',
+  },
 }));
 // const theme = createTheme();
 
@@ -300,7 +318,7 @@ export default function CustomerProfile() {
     <Container>
       <BreadcrumbCustom breadcrumbsList={breadcrumbsList} />
       <Grid container direction="row" justifyContent="space-between" alignItems="center">
-        <Title>Customer behaviors</Title>
+        <Title>Dashboard</Title>
         <Card>
           <CardContent className={classes.cardSearch}>
             <TitleCardSearch>Cutomer</TitleCardSearch>
@@ -343,28 +361,18 @@ export default function CustomerProfile() {
                       </Typography>
                     </Grid>
                     <Grid container>
-                      <Grid item lg={5}>
-                        <FormControl className={classes.form}>
-                          <InputLabel htmlFor="standard-adornment-AUTHENTICATION">AUTHENTICATION</InputLabel>
-                          <Input
-                            id="standard-AUTHENTICATION"
-                          // type={values.showPassword ? 'text' : 'password'}
-                          // value={values.password}
-                          // onChange={handleChange('password')}
-                            endAdornment={(
-                              <InputAdornment position="end">
-                                <IconButton
-                                  className={classes.buttonIcon}
-                                  aria-label="PROFILE-SNAPSHOT"
-                                >
-                                  <CreateIcon />
-                                </IconButton>
-                              </InputAdornment>
-                                )}
-                          />
-                        </FormControl>
+                      <Grid item lg={5} xs={5}>
+                        <Grid style={{ width: '80%', margin: 8 }}>
+                          <Grid container justifyContent="space-between">
+                            <Typography className={classes.titlecardcontent}>
+                              AUTHENTICATION
+                            </Typography>
+                            <CreateIcon className={classes.titlecardicon} />
+                          </Grid>
+                          <Divider />
+                        </Grid>
                         <Grid container>
-                          <Grid item lg={6}>
+                          <Grid item lg={6} xs={6}>
                             <Grid className={classes.contenttext}>
                               <Typography className={classes.cardtitle}>
                                 PHONE
@@ -391,12 +399,12 @@ export default function CustomerProfile() {
                               </Typography>
                             </Grid>
                           </Grid>
-                          <Grid item lg={6}>
+                          <Grid item lg={6} xs={6}>
                             <Grid className={classes.contenttext}>
                               <Typography className={classes.cardtitle}>
                                 EMAIL
                               </Typography>
-                              <Typography className={classes.cardtext}>
+                              <Typography className={clsx(classes.cardtext, classes.email)}>
                                 {menuItem.customer_sources.email}
                               </Typography>
                             </Grid>
@@ -413,39 +421,30 @@ export default function CustomerProfile() {
                                 EMPLOYER
                               </Typography>
                               <Typography className={classes.cardtext}>
-                                {menuItem.empolyer}
+                                {menuItem.customer_sources.empolyer}
                               </Typography>
                             </Grid>
                           </Grid>
                         </Grid>
                       </Grid>
-                      <Grid item lg={5}>
-                        <FormControl className={classes.form}>
-                          <InputLabel htmlFor="standard-adornment-PROFILE-SNAPSHOT">PROFILE SNAPSHOT</InputLabel>
-                          <Input
-                            id="standard-adornment-password"
-                          // type={values.showPassword ? 'text' : 'password'}
-                          // value={values.password}
-                          // onChange={handleChange('password')}
-                            endAdornment={(
-                              <InputAdornment position="end">
-                                <IconButton
-                                  aria-label="PROFILE-SNAPSHOT"
-                                >
-                                  <CreateIcon />
-                                </IconButton>
-                              </InputAdornment>
-                                )}
-                          />
-                        </FormControl>
+                      <Grid item lg={5} xs={5}>
+                        <Grid style={{ width: '80%', margin: 8 }}>
+                          <Grid container justifyContent="space-between">
+                            <Typography className={classes.titlecardcontent}>
+                              PROFILE SNAPSHOT
+                            </Typography>
+                            <CreateIcon className={classes.titlecardicon} />
+                          </Grid>
+                          <Divider />
+                        </Grid>
                         <Grid container>
-                          <Grid item lg={6}>
+                          <Grid item lg={6} xs={6}>
                             <Grid className={classes.contenttext}>
                               <Typography className={classes.cardtitle}>
                                 CUSTOMER SINCE
                               </Typography>
                               <Typography className={classes.cardtext}>
-                                {menuItem.customer_sources.telephone}
+                                {menuItem.customer_address.CUSTOMER_SINCE}
                               </Typography>
                             </Grid>
                             <Grid className={classes.contenttext}>
@@ -453,7 +452,7 @@ export default function CustomerProfile() {
                                 MARITAL STATUS
                               </Typography>
                               <Typography className={classes.cardtext}>
-                                {menuItem.customer_sources.Address}
+                                {menuItem.customer_address.MARITAL_STATUS}
                               </Typography>
                             </Grid>
                             <Grid className={classes.contenttext}>
@@ -461,44 +460,47 @@ export default function CustomerProfile() {
                                 CHILDREN
                               </Typography>
                               <Typography className={classes.cardtext}>
-                                {menuItem.customer_address.City}
-                                {menuItem.customer_address.Country}
+                                {menuItem.customer_address.CHILDREN}
                               </Typography>
                             </Grid>
                           </Grid>
-                          <Grid item lg={6}>
+                          <Grid item lg={6} xs={6}>
                             <Grid className={classes.contenttext}>
                               <Typography className={classes.cardtitle}>
                                 CLIENT SEGMENT
                               </Typography>
                               <Typography className={classes.cardtext}>
-                                {menuItem.customer_sources.email}
+                                {menuItem.customer_address.CLIENT_SEGMENT}
                               </Typography>
                             </Grid>
                             <Grid className={classes.contenttext}>
                               <Typography className={classes.cardtitle}>
                                 CREDIT RATING
                               </Typography>
-                              <Typography className={classes.cardtext}>
-                                {menuItem.customer_sources.Date_of_Birth}
+                              <Typography className={clsx(classes.cardtext, classes.number)}>
+                                {menuItem.customer_address.CREDIT_RATING}
                               </Typography>
                             </Grid>
                             <Grid className={classes.contenttext}>
                               <Typography className={classes.cardtitle}>
                                 PROFILE COMPLETENESS
                               </Typography>
-                              <Typography className={classes.cardtext}>
-                                {menuItem.empolyer}
+                              <Typography className={clsx(classes.cardtext, classes.number)}>
+                                {menuItem.customer_address.PROFILE_COMPLETENESS}
                               </Typography>
                             </Grid>
                           </Grid>
                         </Grid>
                       </Grid>
-                      <Grid item lg={2}>
-                        <FormControl className={classes.form1}>
-                          <InputLabel htmlFor="standard-adornment-PROFILE-SNAPSHOT">PREFERRED CHANNELS</InputLabel>
-                          <Input />
-                        </FormControl>
+                      <Grid item lg={2} xs={2}>
+                        <Grid style={{ width: 'auto', margin: 8 }}>
+                          <Grid container justifyContent="space-between">
+                            <Typography className={classes.titlecardcontent}>
+                              PREFERRED CHANNELS
+                            </Typography>
+                          </Grid>
+                          <Divider />
+                        </Grid>
                         <Grid container direction="column" justifyContent="center" alignItems="flex-start">
                           <img src={facebook} alt="facebook" />
                           <img src={ins} alt="ins" />
@@ -519,23 +521,23 @@ export default function CustomerProfile() {
         </Grid>
         <Divider />
         <Grid container spacing={6}>
-          <Grid item lg={8}>
+          <Grid item lg={8} xs={8}>
             <TitleChart>Average spending</TitleChart>
             <HighchartsReact
               highcharts={Highcharts}
               options={barchart}
             />
           </Grid>
-          <Grid item lg={4}>
+          <Grid item lg={4} xs={4}>
             <Grid container>
-              <Grid item lg={8}>
+              <Grid item lg={8} xs={8}>
                 <TitleChart> Channel spending</TitleChart>
                 <HighchartsReact
                   highcharts={Highcharts}
                   options={optionsDonutChart}
                 />
               </Grid>
-              <Grid item lg={4}>
+              <Grid item lg={4} xs={4}>
                 <Grid container justifyContent="flex-start" alignItems="center" style={{ height: '100%' }}>
                   <Grid>
                     <StatusContent>
