@@ -121,7 +121,7 @@ export default function MenuSidebarList({ location, openDrawer }) {
         {
           key: 'customer_profile',
           name: 'Customer profile',
-          path: '/customer_profile',
+          path: '/customer/customerprofile',
         },
         {
           key: 'customer_clustering',

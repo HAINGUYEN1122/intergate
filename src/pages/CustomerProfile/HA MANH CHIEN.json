@@ -1,0 +1,35 @@
+
+[
+    {
+        "customer_sources": {
+            "telephone": "0918599898",
+            "email": "Chien.manhha@gmail.com",
+            "Account_No_": "MA0017878",
+            "Contact_No_": "MC0017878",
+            "Name": "HA MANH CHIEN",
+            "Gender": "Male",
+            "Date_of_Birth": "1753-01-01",
+            "Address": "Số nhà 40 / ngõ 128 / an dương/ yên phụ",
+            "Address_2": "Quận Tây Hồ/ Hà Nội",
+            "City": "HA NOI",
+            "empolyer": "Devloper",
+            "Country": "VN",
+            "Post_Code": "100000.0",
+            "Scheme_Code": "HP2-MEM",
+            "Club_Code": "LOYAL",
+            "Created_Date": "2019-05-03 00:00:00.000",
+            "Date_Blocked": "1753-01-01 00:00:00.000"
+        },
+        "customer_address": {
+            "street": "Số Nhà 40 / Ngõ 128 / An Dương/ Yên Phụ",
+            "Account_No_": "MA0017878",
+            "CUSTOMER_SINCE": "07/06/2020",
+            "CLIENT_SEGMENT": "Sophisticated Opportunist",
+            "CREDIT_RATING": "95 %",
+            "PROFILE_COMPLETENESS": "80 %",
+            "MARITAL_STATUS": "Single",
+            "CHILDREN": "0",
+            "Country": "VN"
+        }
+    }
+]

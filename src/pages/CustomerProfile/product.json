@@ -1,0 +1,21 @@
+
+[
+    {
+        "Product": {
+            "NAME": "Weimar Watch 40 mm",
+            "CATEGORIES": "Watch",
+            "PROPERTIES": "Brown, 40 mm",
+            "ID": "#0841231",
+            "Name": "HA MANH CHIEN",
+            "Gender": "Male",
+            "PRICE": "128 $",
+            "AMOUNT": "2",
+            "TOTAL": "256 $",
+            "STATUS": "Completed",
+            "STORE": "Offline",
+            "AREA": "Binh Dinh",
+            "TRANSACTION_DATE": "23/02/2021",
+            "PAYMENT_METHOD": "Cash"
+        }
+    }
+]

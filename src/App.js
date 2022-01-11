@@ -20,6 +20,7 @@ import Jsconnection from './pages/Jsconnection';
 import Allusers from './pages/Allusers';
 import signup from './pages/Signup';
 import Trackingbehavior from './pages/Trackingbehavior';
+import CustomerProfile from './pages/CustomerProfile';
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
                   <PrivateRoute exact path="/jsconnection" component={Jsconnection} />
                   <PrivateRoute exact path="/adddatasource" component={AddDataSource} />
                   <PrivateRoute exact path="/dashboard/trackingbehavior" component={Trackingbehavior} />
+                  <PrivateRoute exact path="/customer/customerprofile" component={CustomerProfile} />
                   <PrivateRoute exact path="/allusers" component={Allusers} />
                   <PrivateRoute component={PageNotFound} />
                 </Switch>
